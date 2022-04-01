@@ -349,27 +349,26 @@ var main = {
     let metaJunkies = [];
     let isValid = false;
     junkies.forEach(junk => {
-      console.log(metaFilter);
       if (metaFilter === 'fullmatch') {
         isValid = junk.hair === junk.clothes && junk.clothes === junk.eyes && junk.eyes === junk.backdrop;
       } else if (metaFilter ===  'triplematch') {
-        isValid = (junk.eyes === junk.backdrop &&  junk.eyes === junk.clothes && junk.eyes !== junk.hair)
-        || (junk.hair === junk.eyes &&  junk.hair === junk.clothes && junk.hair !== junk.backdrop)
-        || (junk.hair === junk.eyes &&  junk.hair === junk.backdrop && junk.hair !== junk.clothes)
-        || (junk.clothes === junk.backdrop &&  junk.clothes === junk.eyes && junk.clothes !== junk.hair)
-        || (junk.clothes === junk.backdrop &&  junk.clothes === junk.hair && junk.clothes !== junk.eyes);
+        isValid = (junk.eyes === junk.backdrop &&  junk.eyes === junk.clothes && junk.eyes !== junk.hair && junk.eyes !== 'base')
+        || (junk.hair === junk.eyes &&  junk.hair === junk.clothes && junk.hair !== junk.backdrop && junk.hair !== 'base')
+        || (junk.hair === junk.eyes &&  junk.hair === junk.backdrop && junk.hair !== junk.clothes && junk.hair !== 'base')
+        || (junk.clothes === junk.backdrop &&  junk.clothes === junk.eyes && junk.clothes !== junk.hair && junk.clothes !== 'base')
+        || (junk.clothes === junk.backdrop &&  junk.clothes === junk.hair && junk.clothes !== junk.eyes && junk.clothes !== 'base');
       } else if (metaFilter ===  'eyebgmatch') {
-        isValid = junk.eyes === junk.backdrop;
+        isValid = junk.eyes === junk.backdrop && junk.eyes !== 'base';
       } else if (metaFilter ===  'eyehairmatch') {
-        isValid = junk.eyes === junk.hair;
+        isValid = junk.eyes === junk.hair && junk.eyes !== 'base';
       } else if (metaFilter ===  'hairbgmatch') {
-        isValid = junk.hair === junk.backdrop;
+        isValid = junk.hair === junk.backdrop && junk.hair !== 'base';
       } else if (metaFilter ===  'hairclothesmatch') {
-        isValid = junk.hair === junk.clothes;
+        isValid = junk.hair === junk.clothes && junk.hair !== 'base';
       } else if (metaFilter ===  'clothesbgmatch') {
-        isValid = junk.clothes === junk.backdrop;
+        isValid = junk.clothes === junk.backdrop && junk.clothes !== 'base';
       } else if (metaFilter ===  'clotheseyematch') {
-        isValid = junk.clothes === junk.eyes;
+        isValid = junk.clothes === junk.eyes && junk.clothes !== 'base';
       }
 
       if (isValid) { metaJunkies.push(junk); }
@@ -377,23 +376,22 @@ var main = {
     });
 
     // Sort by Color
-      if (metaFilter ===  'triplematch') {
-         metaJunkies.sort(function(a, b){ return ('' + a.backdrop).localeCompare(b.backdrop) });
-      } else if (metaFilter ===  'eyebgmatch') {
-         metaJunkies.sort(function(a, b){ return ('' + a.backdrop).localeCompare(b.backdrop) });
-      } else if (metaFilter ===  'eyehairmatch') {
-         metaJunkies.sort(function(a, b){ return ('' + a.hair).localeCompare(b.hair) });
-      } else if (metaFilter ===  'hairbgmatch') {
-         metaJunkies.sort(function(a, b){ return ('' + a.backdrop).localeCompare(b.backdrop) });
-      } else if (metaFilter ===  'hairclothesmatch') {
-         metaJunkies.sort(function(a, b){ return ('' + a.hair).localeCompare(b.hair) });
-      } else if (metaFilter ===  'clothesbgmatch') {
-         metaJunkies.sort(function(a, b){ return ('' + a.backdrop).localeCompare(b.backdrop) });
-      } else if (metaFilter ===  'clotheseyematch') {
-         metaJunkies.sort(function(a, b){ return ('' + a.clothes).localeCompare(b.clothes) });
-      }
+    if (metaFilter ===  'triplematch') {
+        metaJunkies.sort(function(a, b){ return ('' + a.backdrop).localeCompare(b.backdrop) });
+    } else if (metaFilter ===  'eyebgmatch') {
+        metaJunkies.sort(function(a, b){ return ('' + a.backdrop).localeCompare(b.backdrop) });
+    } else if (metaFilter ===  'eyehairmatch') {
+        metaJunkies.sort(function(a, b){ return ('' + a.hair).localeCompare(b.hair) });
+    } else if (metaFilter ===  'hairbgmatch') {
+        metaJunkies.sort(function(a, b){ return ('' + a.backdrop).localeCompare(b.backdrop) });
+    } else if (metaFilter ===  'hairclothesmatch') {
+        metaJunkies.sort(function(a, b){ return ('' + a.hair).localeCompare(b.hair) });
+    } else if (metaFilter ===  'clothesbgmatch') {
+        metaJunkies.sort(function(a, b){ return ('' + a.backdrop).localeCompare(b.backdrop) });
+    } else if (metaFilter ===  'clotheseyematch') {
+        metaJunkies.sort(function(a, b){ return ('' + a.clothes).localeCompare(b.clothes) });
+    }
 
-   
     return metaJunkies;
   },
   loadMeta: function(metaName) {
