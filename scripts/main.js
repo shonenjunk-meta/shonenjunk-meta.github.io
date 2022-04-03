@@ -1,10 +1,15 @@
 var data = {
   title: {
-    guardians: 'Guardian',
-    anbu: 'ANBU',
+    guardian: 'Guardian',
     warrior: 'Warrior',
-    baddiegattie: 'Baddie w/ a Gattie',
     waifuknifu: 'Waifu w/ a Knifu',
+    baddiegattie: 'Baddie w/ the Gattie',
+    anbumelee: 'ANBU Melee',
+    anburange: 'ANBU Range',
+    birdmelee: 'Bird Melee',
+    birdrange: 'Bird Range',
+    scannermelee: 'Scanner Melee',
+    scannerrange: 'Scanner Range',
 
     fullmatch: 'Full Match',
     triplematch: 'Triple Color Match',
@@ -18,11 +23,13 @@ var data = {
     stealthblackopsunique: 'Stealth Black-Ops',
 
     nerd: 'Nerd',
+    anbustaff: 'ANBU Staff',
     trait6: '6-Trait',
 
     cyborg: 'Cyborg',
     saint: 'Saint',
     demon: 'Demon',
+    anbuangel: 'ANBU Angel',
     chad: 'Chad',
     evangelion: 'Evangelion',
     silverbuzzunique: 'Silver Buzz',
@@ -58,23 +65,13 @@ var data = {
 };
 
 var meta = {
-  guardians: [
+  guardian: [
     {
       value: ["Space Suit A", "Space Suit B", "Sci-Fi Jacket"],
       trait_type: "Clothes"
     },
     {
       value: ["Space Sword"],
-      trait_type: "Swords & Wings"
-    },
-  ],
-  anbu: [
-    {
-      value: ["Kitsune Mask"],
-      trait_type: "Props"
-    },
-    {
-      value: ["Double Katana", "Staff", "Short Staff", "Magic Staff", "M-16", "Giant Sword"],
       trait_type: "Swords & Wings"
     },
   ],
@@ -112,6 +109,66 @@ var meta = {
       trait_type: "Swords & Wings"
     },
   ],
+  anbumelee: [
+    {
+      value: ["Kitsune Mask"],
+      trait_type: "Props"
+    },
+    {
+      value: ["Double Katana", "Staff", "Giant Sword", "Space Sword", "Tassel Sword", "Small Staff"],
+      trait_type: "Swords & Wings"
+    },
+  ],
+  anburange: [
+    {
+      value: ["Kitsune Mask"],
+      trait_type: "Props"
+    },
+    {
+      value: ["Magic Staff", "M-16"],
+      trait_type: "Swords & Wings"
+    },
+  ],
+  birdmelee: [
+    {
+      value: ["Bird Headpiece"],
+      trait_type: "Props",
+    },
+    {
+      value: ["Double Katana", "Staff", "Giant Sword", "Space Sword", "Tassel Sword", "Small Staff"],
+      trait_type: "Swords & Wings"
+    },
+  ],
+  birdrange: [
+    {
+      value: ["Bird Headpiece"],
+      trait_type: "Props",
+    },
+    {
+      value: ["M-16", "Magic Staff"],
+      trait_type: "Swords & Wings"
+    },
+  ],
+  scannermelee: [
+    {
+      value: ["Scanner"],
+      trait_type: "Props",
+    },
+    {
+      value: ["Double Katana", "Staff", "Giant Sword", "Space Sword", "Tassel Sword", "Small Staff"],
+      trait_type: "Swords & Wings"
+    },
+  ],
+  scannerrange: [
+    {
+      value: ["Scanner"],
+      trait_type: "Props",
+    },
+    {
+      value: ["M-16", "Magic Staff"],
+      trait_type: "Swords & Wings"
+    },
+  ],
   nerd: [
     {
       value: ["School Boy Uniform", "School Girl Uniform A", "School Girl Uniform B"],
@@ -120,6 +177,16 @@ var meta = {
     {
       value: ["Glasses Red"],
       trait_type: "Props",
+    },
+    {
+      value: [undefined],
+      trait_type: "Swords & Wings"
+    },
+  ],
+  anbustaff: [
+    {
+      value: ["Kitsune Mask"],
+      trait_type: "Props"
     },
     {
       value: [undefined],
@@ -172,6 +239,16 @@ var meta = {
     {
       value: ["Cape"],
       trait_type: "Clothes"
+    }
+  ],
+  anbuangel: [
+    {
+      value: ["Angel Wings"],
+      trait_type: "Swords & Wings"
+    },
+    {
+      value: ["Kitsune Mask"],
+      trait_type: "Props"
     }
   ],
   chad: [
