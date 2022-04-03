@@ -1,24 +1,31 @@
 var data = {
   title: {
-    guardian: 'Guardian',
-    warrior: 'Warrior',
+    spaceguardian: 'Space Guardian',
+    spacewarrior: 'Space Warrior',
+    spaceranger: 'Space Ranger',
+    spacemage: 'Space Mage',
+    legionary: 'Legionary',
+    legionaryfighter: 'Legionary Fighter',
+    legionaryranger: 'Legionary Ranger',
+    legionarymage: 'Legionary Mage',
     waifuknifu: 'Waifu w/ a Knifu',
     baddiegattie: 'Baddie w/ the Gattie',
     waifumage: 'Waifu Mage',
-    anbumelee: 'ANBU Melee',
-    anburange: 'ANBU Range',
+    anbu: 'ANBU',
+    anbufighter: 'ANBU Melee',
+    anburanger: 'ANBU Ranger',
     anbumage: 'ANBU Mage',
     birdmelee: 'Bird Melee',
-    birdrange: 'Bird Range',
+    birdranger: 'Bird Ranger',
     birdmage: 'Bird Mage',
-    scannermelee: 'Scanner Melee',
-    scannerrange: 'Scanner Range',
-    scannermage: 'Scanner Mage',
+    scannermelee: 'Scout Melee',
+    scannerranger: 'Scout Ranger',
+    scannermage: 'Scout Mage',
     mastermelee: 'Master Melee',
-    masterrange: 'Master Range',
+    masterranger: 'Master Ranger',
     mastermage: 'Master Mage',
     piratemelee: 'Pirate Melee',
-    piraterange: 'Pirate Range',
+    pirateranger: 'Pirate Ranger',
     shinobi: 'Shinobi',
 
     fullmatch: 'Full Match',
@@ -42,9 +49,11 @@ var data = {
     demon: 'Demon',
     anbuangel: 'ANBU Angel',
     chad: 'Chad',
+    cosmicdemon: 'Cosmic Demon',
     daredevil: 'Daredevil',
     shinobispirit: 'Shinobi Spirit',
     evangelion: 'Evangelion',
+    cosmicangel: 'Cosmic Angel',
     silverbuzzunique: 'Silver Buzz',
 
     guts: 'Guts',
@@ -78,7 +87,7 @@ var data = {
 };
 
 var meta = {
-  guardian: [
+  spaceguardian: [
     {
       value: ["Space Suit A", "Space Suit B", "Sci-Fi Jacket"],
       trait_type: "Clothes"
@@ -88,13 +97,73 @@ var meta = {
       trait_type: "Swords & Wings"
     },
   ],
-  warrior: [
+  spacewarrior: [
+    {
+      value: ["Space Suit A", "Space Suit B", "Sci-Fi Jacket"],
+      trait_type: "Clothes"
+    },
+    {
+      value: ["Double Katana", "Staff", "Short Staff", "Giant Sword", "Tassel Sword"],
+      trait_type: "Swords & Wings"
+    },
+  ],
+  spaceranger: [
+    {
+      value: ["Space Suit A", "Space Suit B", "Sci-Fi Jacket"],
+      trait_type: "Clothes"
+    },
+    {
+      value: ["M-16"],
+      trait_type: "Swords & Wings"
+    },
+  ],
+  spacemage: [
+    {
+      value: ["Space Suit A", "Space Suit B", "Sci-Fi Jacket"],
+      trait_type: "Clothes"
+    },
+    {
+      value: ["Magic Staff"],
+      trait_type: "Swords & Wings"
+    },
+  ],
+  legionary: [
     {
       value: ["Battle Armor", "Fantasy Battle Gear"],
       trait_type: "Clothes"
     },
     {
-      value: ["Double Katana", "Staff", "Short Staff", "Magic Staff", "M-16", "Giant Sword"],
+      value: ["Giant Sword"],
+      trait_type: "Swords & Wings"
+    },
+  ],
+  legionaryfighter: [
+    {
+      value: ["Battle Armor", "Fantasy Battle Gear"],
+      trait_type: "Clothes"
+    },
+    {
+      value: ["Space Sword", "Tassel Sword", "Double Katana", "Short Staff", "Staff"],
+      trait_type: "Swords & Wings"
+    },
+  ],
+  legionaryranger: [
+    {
+      value: ["Battle Armor", "Fantasy Battle Gear"],
+      trait_type: "Clothes"
+    },
+    {
+      value: ["M-16"],
+      trait_type: "Swords & Wings"
+    },
+  ],
+  legionarymage: [
+    {
+      value: ["Battle Armor", "Fantasy Battle Gear"],
+      trait_type: "Clothes"
+    },
+    {
+      value: ["Magic Staff"],
       trait_type: "Swords & Wings"
     },
   ],
@@ -132,17 +201,27 @@ var meta = {
       trait_type: "Swords & Wings"
     },
   ],
-  anbumelee: [
+  anbu: [
     {
       value: ["Kitsune Mask"],
       trait_type: "Props"
     },
     {
-      value: ["Double Katana", "Staff", "Giant Sword", "Space Sword", "Tassel Sword", "Small Staff"],
+      value: ["Double Katana"],
       trait_type: "Swords & Wings"
     },
   ],
-  anburange: [
+  anbufighter: [
+    {
+      value: ["Kitsune Mask"],
+      trait_type: "Props"
+    },
+    {
+      value: ["Staff", "Giant Sword", "Space Sword", "Tassel Sword", "Small Staff"],
+      trait_type: "Swords & Wings"
+    },
+  ],
+  anburanger: [
     {
       value: ["Kitsune Mask"],
       trait_type: "Props"
@@ -172,7 +251,7 @@ var meta = {
       trait_type: "Swords & Wings"
     },
   ],
-  birdrange: [
+  birdranger: [
     {
       value: ["Bird Headpiece"],
       trait_type: "Props",
@@ -202,7 +281,7 @@ var meta = {
       trait_type: "Swords & Wings"
     },
   ],
-  scannerrange: [
+  scannerranger: [
     {
       value: ["Scanner"],
       trait_type: "Props",
@@ -232,7 +311,7 @@ var meta = {
       trait_type: "Swords & Wings"
     },
   ],
-  masterrange: [
+  masterranger: [
     {
       value: ["Eye Mask"],
       trait_type: "Props",
@@ -262,7 +341,7 @@ var meta = {
       trait_type: "Swords & Wings"
     },
   ],
-  piraterange: [
+  pirateranger: [
     {
       value: ["Eye Patch"],
       trait_type: "Props",
@@ -354,6 +433,16 @@ var meta = {
       trait_type: "Hair accessories",
     }
   ],
+  cosmicangel: [
+    {
+      value: ["Space Suit A", "Space Suit B", "Sci-Fi Jacket"],
+      trait_type: "Clothes"
+    },
+    {
+      value: ["Angel Wings"],
+      trait_type: "Swords & Wings"
+    }
+  ],
   demon: [
     {
       value: ["Devil Wings"],
@@ -382,6 +471,16 @@ var meta = {
     {
       value: ["Cape"],
       trait_type: "Clothes"
+    }
+  ],
+  cosmicdemon: [
+    {
+      value: ["Space Suit A", "Space Suit B", "Sci-Fi Jacket"],
+      trait_type: "Clothes"
+    },
+    {
+      value: ["Devil Wings"],
+      trait_type: "Swords & Wings"
     }
   ],
   daredevil: [
