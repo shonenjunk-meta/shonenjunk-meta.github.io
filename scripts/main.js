@@ -32,7 +32,7 @@ var data = {
     blackopsunique: 'Black-Ops',
     stealthblackopsunique: 'Stealth Black-Ops',
 
-    nerd: 'Nerd',
+    weeb: 'Weeb',
     anbustaff: 'ANBU Staff',
     master: 'Master',
     trait6: '6-Trait',
@@ -282,7 +282,7 @@ var meta = {
       trait_type: "Swords & Wings"
     },
   ],
-  nerd: [
+  weeb: [
     {
       value: ["School Boy Uniform", "School Girl Uniform A", "School Girl Uniform B"],
       trait_type: "Clothes"
