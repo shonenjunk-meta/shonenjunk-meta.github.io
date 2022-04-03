@@ -3,6 +3,8 @@ var data = {
     guardians: 'Guardian',
     anbu: 'ANBU',
     warrior: 'Warrior',
+    baddiegattie: 'Baddie w/ a Gattie',
+    waifuknifu: 'Waifu w/ a Knifu',
 
     fullmatch: 'Full Match',
     triplematch: 'Triple Color Match',
@@ -12,6 +14,8 @@ var data = {
     hairclothesmatch: 'Matching Hair & Clothes',
     clothesbgmatch: 'Matching Clothes & Backdrop',
     clotheseyematch: 'Matching Clothes & Eye',
+    blackopsunique: 'Black-Ops',
+    stealthblackopsunique: 'Stealth Black-Ops',
 
     nerd: 'Nerd',
     trait6: '6-Trait',
@@ -84,6 +88,30 @@ var meta = {
       trait_type: "Swords & Wings"
     },
   ],
+  baddiegattie: [
+    {
+      value: ["Long", "Long Shaggy", "Long Full", "Bangs", "Bun", "Streak Highlight", "Mid Middle Part", "Pony Tail", "Long Wavy", "Pigtails", "Choppy"],
+      trait_type: "Hair"
+    },
+    {
+      value: ["M-16"],
+      trait_type: "Swords & Wings"
+    },
+  ],
+  waifuknifu: [
+    {
+      value: ["Long", "Long Shaggy", "Long Full", "Bangs", "Bun", "Streak Highlight", "Mid Middle Part", "Pony Tail", "Long Wavy", "Pigtails", "Choppy"],
+      trait_type: "Hair"
+    },
+    {
+      value: ["School Girl Uniform A", "School Girl Uniform B", "School Boy Uniform"],
+      trait_type: "Clothes"
+    },
+    {
+      value: ["Space Sword", "Giant Sword", "Tassel Sword", "Double Katana"],
+      trait_type: "Swords & Wings"
+    },
+  ],
   nerd: [
     {
       value: ["School Boy Uniform", "School Girl Uniform A", "School Girl Uniform B"],
@@ -134,6 +162,16 @@ var meta = {
     {
       value: ["Comms A", "Comms B"],
       trait_type: "Hair accessories",
+    }
+  ],
+  demon: [
+    {
+      value: ["Devil Wings"],
+      trait_type: "Swords & Wings"
+    },
+    {
+      value: ["Cape"],
+      trait_type: "Clothes"
     }
   ],
   chad: [
@@ -424,28 +462,24 @@ var main = {
     junkies.forEach(junk => {
       if (metaFilter === 'silverbuzzunique') {
         isValid = junk.hair === 'silver' && junk.metadata.attributes.find((att) => att.trait_type === 'Hair' && att.value === 'Jagged Bob');
+      } else if (metaFilter === 'blackopsunique') {
+        isValid = junk.hair === 'black' 
+          && junk.clothes === 'black' 
+          && junk.backdrop === 'black' 
+          && junk.metadata.attributes.find((att) => att.trait_type === 'Swords & Wings');
+      } else if (metaFilter === 'stealthblackopsunique') {
+        isValid = junk.hair === 'black' 
+          && junk.clothes === 'black' 
+          && junk.backdrop === 'black' 
+          && !junk.metadata.attributes.find((att) => att.trait_type === 'Swords & Wings');
       }
 
       if (isValid) { metaJunkies.push(junk); }
       isValid = false;
     });
 
-    // Sort by Color
-    if (metaFilter ===  'triplematch') {
-        metaJunkies.sort(function(a, b){ return ('' + a.backdrop).localeCompare(b.backdrop) });
-    } else if (metaFilter ===  'eyebgmatch') {
-        metaJunkies.sort(function(a, b){ return ('' + a.backdrop).localeCompare(b.backdrop) });
-    } else if (metaFilter ===  'eyehairmatch') {
-        metaJunkies.sort(function(a, b){ return ('' + a.hair).localeCompare(b.hair) });
-    } else if (metaFilter ===  'hairbgmatch') {
-        metaJunkies.sort(function(a, b){ return ('' + a.backdrop).localeCompare(b.backdrop) });
-    } else if (metaFilter ===  'hairclothesmatch') {
-        metaJunkies.sort(function(a, b){ return ('' + a.hair).localeCompare(b.hair) });
-    } else if (metaFilter ===  'clothesbgmatch') {
-        metaJunkies.sort(function(a, b){ return ('' + a.backdrop).localeCompare(b.backdrop) });
-    } else if (metaFilter ===  'clotheseyematch') {
-        metaJunkies.sort(function(a, b){ return ('' + a.clothes).localeCompare(b.clothes) });
-    }
+    // Sort by Rarity
+    metaJunkies.sort(function(a, b){return a.rarity.rank - b.rarity.rank});
 
     return metaJunkies;
   },
@@ -459,6 +493,7 @@ var main = {
     } else if (metaName.includes('unique')) {
       metaJunkies = this.getUniqueMetaJunkies(metaName);
     } else {
+
       metaJunkies = this.getMetaJunkies(meta[metaName]);
     }
 
