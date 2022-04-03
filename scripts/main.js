@@ -16,6 +16,7 @@ var data = {
     nerd: 'Nerd',
     trait6: '6-Trait',
 
+    chad: 'Chad',
     saint: 'Saint',
     cyborg: 'Cyborg',
 
@@ -121,6 +122,26 @@ var meta = {
       value: ["Angel Wings"],
       trait_type: "Swords & Wings"
     },
+  ],
+  evangelion: [
+    {
+      value: ["Space Suit A", "Space Suit B"],
+      trait_type: "Clothes"
+    },
+    {
+      value: ["Comms A", "Comms B"],
+      trait_type: "Hair accessories",
+    }
+  ],
+  chad: [
+    {
+      value: ["Stunner Shades"],
+      trait_type: "Props",
+    },
+    {
+      value: ["Cape"],
+      trait_type: "Clothes"
+    }
   ],
   cyborg: [
     {
