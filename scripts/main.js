@@ -4,12 +4,22 @@ var data = {
     warrior: 'Warrior',
     waifuknifu: 'Waifu w/ a Knifu',
     baddiegattie: 'Baddie w/ the Gattie',
+    waifumage: 'Waifu Mage',
     anbumelee: 'ANBU Melee',
     anburange: 'ANBU Range',
+    anbumage: 'ANBU Mage',
     birdmelee: 'Bird Melee',
     birdrange: 'Bird Range',
+    birdmage: 'Bird Mage',
     scannermelee: 'Scanner Melee',
     scannerrange: 'Scanner Range',
+    scannermage: 'Scanner Mage',
+    mastermelee: 'Master Melee',
+    masterrange: 'Master Range',
+    mastermage: 'Master Mage',
+    piratemelee: 'Pirate Melee',
+    piraterange: 'Pirate Range',
+    shinobi: 'Shinobi',
 
     fullmatch: 'Full Match',
     triplematch: 'Triple Color Match',
@@ -24,6 +34,7 @@ var data = {
 
     nerd: 'Nerd',
     anbustaff: 'ANBU Staff',
+    master: 'Master',
     trait6: '6-Trait',
 
     cyborg: 'Cyborg',
@@ -31,6 +42,8 @@ var data = {
     demon: 'Demon',
     anbuangel: 'ANBU Angel',
     chad: 'Chad',
+    daredevil: 'Daredevil',
+    shinobispirit: 'Shinobi Spirit',
     evangelion: 'Evangelion',
     silverbuzzunique: 'Silver Buzz',
 
@@ -85,16 +98,6 @@ var meta = {
       trait_type: "Swords & Wings"
     },
   ],
-  baddiegattie: [
-    {
-      value: ["Long", "Long Shaggy", "Long Full", "Bangs", "Bun", "Streak Highlight", "Mid Middle Part", "Pony Tail", "Long Wavy", "Pigtails", "Choppy"],
-      trait_type: "Hair"
-    },
-    {
-      value: ["M-16"],
-      trait_type: "Swords & Wings"
-    },
-  ],
   waifuknifu: [
     {
       value: ["Long", "Long Shaggy", "Long Full", "Bangs", "Bun", "Streak Highlight", "Mid Middle Part", "Pony Tail", "Long Wavy", "Pigtails", "Choppy"],
@@ -106,6 +109,26 @@ var meta = {
     },
     {
       value: ["Space Sword", "Giant Sword", "Tassel Sword", "Double Katana"],
+      trait_type: "Swords & Wings"
+    },
+  ],
+  baddiegattie: [
+    {
+      value: ["Long", "Long Shaggy", "Long Full", "Bangs", "Bun", "Streak Highlight", "Mid Middle Part", "Pony Tail", "Long Wavy", "Pigtails", "Choppy"],
+      trait_type: "Hair"
+    },
+    {
+      value: ["M-16"],
+      trait_type: "Swords & Wings"
+    },
+  ],
+  waifumage: [
+    {
+      value: ["Long", "Long Shaggy", "Long Full", "Bangs", "Bun", "Streak Highlight", "Mid Middle Part", "Pony Tail", "Long Wavy", "Pigtails", "Choppy"],
+      trait_type: "Hair"
+    },
+    {
+      value: ["Magic Staff"],
       trait_type: "Swords & Wings"
     },
   ],
@@ -125,7 +148,17 @@ var meta = {
       trait_type: "Props"
     },
     {
-      value: ["Magic Staff", "M-16"],
+      value: ["M-16"],
+      trait_type: "Swords & Wings"
+    },
+  ],
+  anbumage: [
+    {
+      value: ["Kitsune Mask"],
+      trait_type: "Props"
+    },
+    {
+      value: ["Magic Staff"],
       trait_type: "Swords & Wings"
     },
   ],
@@ -145,7 +178,17 @@ var meta = {
       trait_type: "Props",
     },
     {
-      value: ["M-16", "Magic Staff"],
+      value: ["M-16"],
+      trait_type: "Swords & Wings"
+    },
+  ],
+  birdmage: [
+    {
+      value: ["Bird Headpiece"],
+      trait_type: "Props",
+    },
+    {
+      value: ["Magic Staff"],
       trait_type: "Swords & Wings"
     },
   ],
@@ -165,7 +208,77 @@ var meta = {
       trait_type: "Props",
     },
     {
-      value: ["M-16", "Magic Staff"],
+      value: ["M-16"],
+      trait_type: "Swords & Wings"
+    },
+  ],
+  scannermage: [
+    {
+      value: ["Scanner"],
+      trait_type: "Props",
+    },
+    {
+      value: ["Magic Staff"],
+      trait_type: "Swords & Wings"
+    },
+  ],
+  mastermelee: [
+    {
+      value: ["Eye Mask"],
+      trait_type: "Props",
+    },
+    {
+      value: ["Double Katana", "Staff", "Giant Sword", "Space Sword", "Tassel Sword", "Small Staff"],
+      trait_type: "Swords & Wings"
+    },
+  ],
+  masterrange: [
+    {
+      value: ["Eye Mask"],
+      trait_type: "Props",
+    },
+    {
+      value: ["M-16"],
+      trait_type: "Swords & Wings"
+    },
+  ],
+  mastermage: [
+    {
+      value: ["Eye Mask"],
+      trait_type: "Props",
+    },
+    {
+      value: ["Magic Staff"],
+      trait_type: "Swords & Wings"
+    },
+  ],
+  piratemelee: [
+    {
+      value: ["Eye Patch"],
+      trait_type: "Props",
+    },
+    {
+      value: ["Double Katana", "Staff", "Giant Sword", "Space Sword", "Tassel Sword", "Small Staff"],
+      trait_type: "Swords & Wings"
+    },
+  ],
+  piraterange: [
+    {
+      value: ["Eye Patch"],
+      trait_type: "Props",
+    },
+    {
+      value: ["M-16"],
+      trait_type: "Swords & Wings"
+    },
+  ],
+  shinobi: [
+    {
+      value: ["Headband"],
+      trait_type: "Props",
+    },
+    {
+      value: ["Double Katana", "Staff", "Giant Sword", "Space Sword", "Tassel Sword", "Small Staff"],
       trait_type: "Swords & Wings"
     },
   ],
@@ -186,6 +299,16 @@ var meta = {
   anbustaff: [
     {
       value: ["Kitsune Mask"],
+      trait_type: "Props"
+    },
+    {
+      value: [undefined],
+      trait_type: "Swords & Wings"
+    },
+  ],
+  master: [
+    {
+      value: ["Eye Mask"],
       trait_type: "Props"
     },
     {
@@ -259,6 +382,26 @@ var meta = {
     {
       value: ["Cape"],
       trait_type: "Clothes"
+    }
+  ],
+  daredevil: [
+    {
+      value: ["Angel Wings", "Devil Wings"],
+      trait_type: "Swords & Wings"
+    },
+    {
+      value: ["Eye Mask"],
+      trait_type: "Props"
+    }
+  ],
+  shinobispirit: [
+    {
+      value: ["Angel Wings", "Devil Wings"],
+      trait_type: "Swords & Wings"
+    },
+    {
+      value: ["Headband"],
+      trait_type: "Props"
     }
   ],
   cyborg: [
