@@ -501,8 +501,8 @@ var main = {
       let img = junk.metadata.image;
 
       innerHtml = innerHtml + 
-      `<a href="https://opensea.io/assets/0xf4121a2880c225f90dc3b3466226908c9cb2b085/${junk.tokenId}" target="_blank" style="height: 380px;">
-        <img src="${img}" style="max-width: 330px;">
+      `<a href="https://opensea.io/assets/0xf4121a2880c225f90dc3b3466226908c9cb2b085/${junk.tokenId}" target="_blank" style="height: 310px;">
+        <img src="${img}" style="max-width: 260px;">
         <div style="height: 40px; text-align: left;">
           <span class="heading" style="color: #363636;">SJ#${junk.tokenId}<span>
           <span class="heading" style="color: #363636;font-weight: bold;">RANK ${junk.rarity.rank}<span>
