@@ -16,9 +16,12 @@ var data = {
     nerd: 'Nerd',
     trait6: '6-Trait',
 
-    chad: 'Chad',
-    saint: 'Saint',
     cyborg: 'Cyborg',
+    saint: 'Saint',
+    demon: 'Demon',
+    chad: 'Chad',
+    evangelion: 'Evangelion',
+    silverbuzzunique: 'Silver Buzz',
 
     guts: 'Guts',
     yugi: 'Yugi',
@@ -415,37 +418,49 @@ var main = {
 
     return metaJunkies;
   },
+  getUniqueMetaJunkies: function(metaFilter) {
+    let metaJunkies = [];
+    let isValid = false;
+    junkies.forEach(junk => {
+      if (metaFilter === 'silverbuzzunique') {
+        isValid = junk.hair === 'silver' && junk.metadata.attributes.find((att) => att.trait_type === 'Hair' && att.value === 'Jagged Bob');
+      }
+
+      if (isValid) { metaJunkies.push(junk); }
+      isValid = false;
+    });
+
+    // Sort by Color
+    if (metaFilter ===  'triplematch') {
+        metaJunkies.sort(function(a, b){ return ('' + a.backdrop).localeCompare(b.backdrop) });
+    } else if (metaFilter ===  'eyebgmatch') {
+        metaJunkies.sort(function(a, b){ return ('' + a.backdrop).localeCompare(b.backdrop) });
+    } else if (metaFilter ===  'eyehairmatch') {
+        metaJunkies.sort(function(a, b){ return ('' + a.hair).localeCompare(b.hair) });
+    } else if (metaFilter ===  'hairbgmatch') {
+        metaJunkies.sort(function(a, b){ return ('' + a.backdrop).localeCompare(b.backdrop) });
+    } else if (metaFilter ===  'hairclothesmatch') {
+        metaJunkies.sort(function(a, b){ return ('' + a.hair).localeCompare(b.hair) });
+    } else if (metaFilter ===  'clothesbgmatch') {
+        metaJunkies.sort(function(a, b){ return ('' + a.backdrop).localeCompare(b.backdrop) });
+    } else if (metaFilter ===  'clotheseyematch') {
+        metaJunkies.sort(function(a, b){ return ('' + a.clothes).localeCompare(b.clothes) });
+    }
+
+    return metaJunkies;
+  },
   loadMeta: function(metaName) {
     main.clearList();
     var innerHtml = '';
 
-    let metaJunkies = this.getMetaJunkies(meta[metaName]);
-
-    metaJunkies.forEach(junk => {
-      let img = junk.metadata.image;
-
-      innerHtml = innerHtml + 
-      `<a href="https://opensea.io/assets/0xf4121a2880c225f90dc3b3466226908c9cb2b085/${junk.tokenId}" target="_blank" style="height: 380px;">
-        <img src="${img}" style="max-width: 330px;">
-        <div style="height: 40px; text-align: left;">
-          <span class="heading" style="color: #363636;">SJ#${junk.tokenId}<span>
-          <span class="heading" style="color: #363636;font-weight: bold;">RANK ${junk.rarity.rank}<span>
-        </div>
-      </a>`;
-    });
-
-    main.updateTitle(data.title[metaName], metaJunkies.length);
-
-    document.getElementById("monkeyListContainer").innerHTML = innerHtml;
-    main.closeMenu();
-    main.showListTitle();
-    main.hideSummary();
-  },
-  loadColorMeta: function(metaName) {
-    main.clearList();
-    var innerHtml = '';
-
-    let metaJunkies = this.getColorMetaJunkies(metaName);
+    let metaJunkies = [];
+    if (metaName.includes('match')) {
+      metaJunkies = this.getColorMetaJunkies(metaName);
+    } else if (metaName.includes('unique')) {
+      metaJunkies = this.getUniqueMetaJunkies(metaName);
+    } else {
+      metaJunkies = this.getMetaJunkies(meta[metaName]);
+    }
 
     metaJunkies.forEach(junk => {
       let img = junk.metadata.image;
@@ -514,6 +529,8 @@ var main = {
       junkies[counter].backdrop = colors.find((c) => c.hash === av.backdrop && c.trait_type_name === 'backdrop').color;
       junkies[counter].clothes = colors.find((c) => c.hash === av.clothes && c.trait_type_name === 'clothes').color;
       counter++;
+
+
     }); 
   }
 };

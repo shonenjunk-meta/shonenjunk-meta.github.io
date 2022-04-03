@@ -62,28 +62,28 @@
           </a>
   
           <div class="navbar-dropdown">
-            <a class="navbar-item heading" onclick="main.loadColorMeta('fullmatch');">
+            <a class="navbar-item heading" onclick="main.loadMeta('fullmatch');">
               Full Match
             </a>
-            <a class="navbar-item heading" onclick="main.loadColorMeta('triplematch');">
+            <a class="navbar-item heading" onclick="main.loadMeta('triplematch');">
               Triple Match
             </a>
-            <a class="navbar-item heading" onclick="main.loadColorMeta('eyebgmatch');">
+            <a class="navbar-item heading" onclick="main.loadMeta('eyebgmatch');">
               Eye + BG Match
             </a>
-            <a class="navbar-item heading" onclick="main.loadColorMeta('eyehairmatch');">
+            <a class="navbar-item heading" onclick="main.loadMeta('eyehairmatch');">
               Eye + Hair Match
             </a>
-            <a class="navbar-item heading" onclick="main.loadColorMeta('hairbgmatch');">
+            <a class="navbar-item heading" onclick="main.loadMeta('hairbgmatch');">
               Hair + BG Match
             </a>
-            <a class="navbar-item heading" onclick="main.loadColorMeta('hairclothesmatch');">
+            <a class="navbar-item heading" onclick="main.loadMeta('hairclothesmatch');">
               Hair + Clothes Match
             </a>
-            <a class="navbar-item heading" onclick="main.loadColorMeta('clothesbgmatch');">
+            <a class="navbar-item heading" onclick="main.loadMeta('clothesbgmatch');">
               Clothes + BG Match
             </a>
-            <a class="navbar-item heading" onclick="main.loadColorMeta('clotheseyematch');">
+            <a class="navbar-item heading" onclick="main.loadMeta('clotheseyematch');">
               Clothes + Eye Match
             </a>
           </div>
@@ -94,20 +94,23 @@
           </a>
   
           <div class="navbar-dropdown">
-            <a class="navbar-item heading" onclick="main.loadMeta('evangelion');">
-              Evangelion
-            </a>
-            <a class="navbar-item heading" onclick="main.loadMeta('chad');">
-              Chad
-            </a>
-            <a class="navbar-item heading" onclick="main.loadMeta('demon');">
-              Demon
+            <a class="navbar-item heading" onclick="main.loadMeta('cyborg');">
+              Cyborg
             </a>
             <a class="navbar-item heading" onclick="main.loadMeta('saint');">
               Saint
             </a>
-            <a class="navbar-item heading" onclick="main.loadMeta('cyborg');">
-              Cyborg
+            <a class="navbar-item heading" onclick="main.loadMeta('demon');">
+              Demon
+            </a>
+            <a class="navbar-item heading" onclick="main.loadMeta('chad');">
+              Chad
+            </a>
+            <a class="navbar-item heading" onclick="main.loadMeta('evangelion');">
+              Evangelion
+            </a>
+            <a class="navbar-item heading" onclick="main.loadMeta('silverbuzzunique');">
+              Silver Buzz
             </a>
           </div>
         </div>
@@ -269,7 +272,7 @@
         <h1 class="heading title">Color Match</h1>
         <nav class="level" style>
           <div class="level-item has-text-centered">
-            <div onclick="main.loadColorMeta('triplematch');">
+            <div onclick="main.loadMeta('triplematch');">
               <p>
                 <img src="https://static.shinji.xyz/unit-00/nft-images/0d6bff94aad92de1f623f469a848af7917b26d5708901ff80f5eac8fda36f97a.png"  style="max-width: 140px; padding-bottom: 10px;">
               </p>
@@ -277,7 +280,7 @@
             </div>
           </div>
           <div class="level-item has-text-centered">
-            <div onclick="main.loadColorMeta('triplematch');">
+            <div onclick="main.loadMeta('triplematch');">
               <p>
                 <img src="https://static.shinji.xyz/unit-00/nft-images/ba820863a2a0b14e0fbc4c5d866c79a168c5ff905298ac20b820005e62f46b0e.png"  style="max-width: 140px; padding-bottom: 10px;">
               </p>
@@ -289,7 +292,7 @@
       <section class="hero is-small" style="padding: 20p;">
         <nav class="level" style>
           <div class="level-item has-text-centered">
-            <div onclick="main.loadColorMeta('eyebgmatch');">
+            <div onclick="main.loadMeta('eyebgmatch');">
               <p>
                 <img src="https://static.shinji.xyz/unit-00/nft-images/4eb0a5f9d4ececc5705c49d81b1e94c3d56125e3e6ff82be1e8d27c98508a3b9.png"  style="max-width: 140px; padding-bottom: 10px;">
               </p>
@@ -297,7 +300,7 @@
             </div>
           </div>
           <div class="level-item has-text-centered">
-            <div onclick="main.loadColorMeta('eyehairmatch');">
+            <div onclick="main.loadMeta('eyehairmatch');">
               <p>
                 <img src="https://static.shinji.xyz/unit-00/nft-images/eae24128bdc2c039a3d43ec03dceaced3996692e2306f38a1aa46886313dfcc0.png"  style="max-width: 140px; padding-bottom: 10px;">
               </p>
@@ -305,7 +308,7 @@
             </div>
           </div>
           <div class="level-item has-text-centered">
-            <div onclick="main.loadColorMeta('hairbgmatch');">
+            <div onclick="main.loadMeta('hairbgmatch');">
               <p>
                 <img src="https://static.shinji.xyz/unit-00/nft-images/ac16027560ae7d20d6b32af26b57df407e0f16a20a745796d64526f68896a1c2.png"  style="max-width: 140px; padding-bottom: 10px;">
               </p>
@@ -313,7 +316,7 @@
             </div>
           </div>
           <div class="level-item has-text-centered">
-            <div onclick="main.loadColorMeta('hairclothesmatch');">
+            <div onclick="main.loadMeta('hairclothesmatch');">
               <p>
                 <img src="https://static.shinji.xyz/unit-00/nft-images/cb51345769967164f72d39690e0aa8c3ce17a33f14e93e714c27354fc3ee68da.png"  style="max-width: 140px; padding-bottom: 10px;">
               </p>
@@ -321,7 +324,7 @@
             </div>
           </div>
           <div class="level-item has-text-centered">
-            <div onclick="main.loadColorMeta('clothesbgmatch');">
+            <div onclick="main.loadMeta('clothesbgmatch');">
               <p>
                 <img src="https://static.shinji.xyz/unit-00/nft-images/2fbe29b310b9ef7d7c0f763c98997bfdd59888cbde1d4b1682af8eeb2bfc581a.png"  style="max-width: 140px; padding-bottom: 10px;">
               </p>
@@ -329,7 +332,7 @@
             </div>
           </div>
           <div class="level-item has-text-centered">
-            <div onclick="main.loadColorMeta('clotheseyematch');">
+            <div onclick="main.loadMeta('clotheseyematch');">
               <p>
                 <img src="https://static.shinji.xyz/unit-00/nft-images/6e89be368897766b3c13d586f1a6e69ce70577f5c639b135669731be1804639d.png"  style="max-width: 140px; padding-bottom: 10px;">
               </p>
@@ -342,27 +345,11 @@
         <h1 class="heading title">Unique</h1>
         <nav class="level" style>
           <div class="level-item has-text-centered">
-            <div onclick="main.loadMeta('evangelion');">
+            <div onclick="main.loadMeta('cyborg');">
               <p>
-                <img src="https://static.shinji.xyz/unit-00/nft-images/cb14ef04e32a83085c284f331c483dbc16c731c676f256e890fdd6bac252cee2.png"  style="max-width: 140px; padding-bottom: 10px;">
+                <img src="https://static.shinji.xyz/unit-00/nft-images/cd461b0cc4f7d3beed125553302aff169fed8062b95307aba03443be100231ce.png"  style="max-width: 140px; padding-bottom: 10px;">
               </p>
-              <p class="heading">Evangelion</p>
-            </div>
-          </div>
-          <div class="level-item has-text-centered">
-            <div onclick="main.loadMeta('chad');">
-              <p>
-                <img src="https://static.shinji.xyz/unit-00/nft-images/8180bb07dfc26613d56b733219f337afcae434a7f962387ee560d461fbba1277.png"  style="max-width: 140px; padding-bottom: 10px;">
-              </p>
-              <p class="heading">Chad</p>
-            </div>
-          </div>
-          <div class="level-item has-text-centered">
-            <div onclick="main.loadMeta('demon');">
-              <p>
-                <img src="https://static.shinji.xyz/unit-00/nft-images/bd425b26d755c0345a74427bc2c28a3edacde518a9d327edd4d8e4c1622c0816.png"  style="max-width: 140px; padding-bottom: 10px;">
-              </p>
-              <p class="heading">Demon</p>
+              <p class="heading">Cyborg</p>
             </div>
           </div>
           <div class="level-item has-text-centered">
@@ -374,11 +361,35 @@
             </div>
           </div>
           <div class="level-item has-text-centered">
-            <div onclick="main.loadMeta('cyborg');">
+            <div onclick="main.loadMeta('demon');">
               <p>
-                <img src="https://static.shinji.xyz/unit-00/nft-images/cd461b0cc4f7d3beed125553302aff169fed8062b95307aba03443be100231ce.png"  style="max-width: 140px; padding-bottom: 10px;">
+                <img src="https://static.shinji.xyz/unit-00/nft-images/bd425b26d755c0345a74427bc2c28a3edacde518a9d327edd4d8e4c1622c0816.png"  style="max-width: 140px; padding-bottom: 10px;">
               </p>
-              <p class="heading">Cyborg</p>
+              <p class="heading">Demon</p>
+            </div>
+          </div>
+          <div class="level-item has-text-centered">
+            <div onclick="main.loadMeta('chad');">
+              <p>
+                <img src="https://static.shinji.xyz/unit-00/nft-images/8180bb07dfc26613d56b733219f337afcae434a7f962387ee560d461fbba1277.png"  style="max-width: 140px; padding-bottom: 10px;">
+              </p>
+              <p class="heading">Chad</p>
+            </div>
+          </div>
+          <div class="level-item has-text-centered">
+            <div onclick="main.loadMeta('evangelion');">
+              <p>
+                <img src="https://static.shinji.xyz/unit-00/nft-images/cb14ef04e32a83085c284f331c483dbc16c731c676f256e890fdd6bac252cee2.png"  style="max-width: 140px; padding-bottom: 10px;">
+              </p>
+              <p class="heading">Evangelion</p>
+            </div>
+          </div>
+          <div class="level-item has-text-centered">
+            <div onclick="main.loadMeta('silverbuzzunique');">
+              <p>
+                <img src="https://static.shinji.xyz/unit-00/nft-images/9041d3628bb769283c71c4e943c5a72ace92859d45f3cf427fc4962e453121ab.png"  style="max-width: 140px; padding-bottom: 10px;">
+              </p>
+              <p class="heading">Silver Buzz</p>
             </div>
           </div>
         </nav>
