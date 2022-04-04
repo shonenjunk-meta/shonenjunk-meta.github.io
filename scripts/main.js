@@ -50,6 +50,7 @@ var data = {
     demon: 'Demon',
     anbuangel: 'ANBU Angel',
     chad: 'Chad',
+    battleangel: 'Battle Angel',
     cosmicdemon: 'Cosmic Demon',
     mj: 'MJ',
     daredevil: 'Daredevil',
@@ -520,6 +521,16 @@ var meta = {
     },
     {
       value: ["Devil Wings"],
+      trait_type: "Swords & Wings"
+    }
+  ],
+  battleangel: [
+    {
+      value: ["Battle Armor"],
+      trait_type: "Clothes"
+    },
+    {
+      value: ["Angel Wings"],
       trait_type: "Swords & Wings"
     }
   ],
