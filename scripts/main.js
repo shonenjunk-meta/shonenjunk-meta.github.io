@@ -59,6 +59,7 @@ var data = {
     cosmicangel: 'Cosmic Angel',
     silverbuzzunique: 'Silver Buzz',
 
+    edward: 'Edward', 
     guts: 'Guts',
     yugi: 'Yugi',
     naruto: 'Naruto',
@@ -574,6 +575,16 @@ var meta = {
       value: ["Battle Armor"],
       trait_type: "Clothes"
     }
+  ],
+  edward: [
+    {
+      value: ["Battle Armor"],
+      trait_type: "Clothes"
+    },
+    {
+      value: ["Pony Tail"],
+      trait_type: "Hair",
+    },
   ],
   guts: [
     {
