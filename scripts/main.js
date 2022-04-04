@@ -2,18 +2,36 @@ var data = {
   title: {
     customcolorfilter: 'Custom Color Filter',
 
-    spaceguardian: 'Space Guardian',
-    spacewarrior: 'Space Warrior',
-    spaceranger: 'Space Ranger',
-    spacemage: 'Space Mage',
-    legionary: 'Legionary',
+    psiops: 'Psi-Ops',
+    psiopssoldier: 'Psi-Ops Soldier',
+    psiopsranger: 'Psi-Ops Ranger',
+    psiopsmage: 'Psi-Ops Mage',
+    psiopsangel: 'Psi-Ops Angel',
+    psiopsdevil: 'Psi-Ops Devil',
+
+    cosmic: 'Cosmic',
+    cosmicsoldier: 'Cosmic Soldier',
+    cosmicranger: 'Cosmic Ranger',
+    cosmicmage: 'Cosmic Mage',
+    cosmicangel: 'Cosmic Angel',
+    cosmicdevil: 'Cosmic Devil',
+
+    astral: 'Astral',
+    astralsoldier: 'Astral Soldier',
+    astralranger: 'Astral Ranger',
+    astralmage: 'Astral Mage',
+    astralangel: 'Astral Angel',
+    astraldevil: 'Astral Devil',
+
+    legionary: 'Psi-Ops',
     legionaryfighter: 'Legionary Fighter',
     legionaryranger: 'Legionary Ranger',
     legionarymage: 'Legionary Mage',
     legionarycasualty: 'Legionary Casualty',
     waifuknifu: 'Waifu w/ a Knifu',
     baddiegattie: 'Baddie w/ the Gattie',
-    waifumage: 'Waifu Mage',
+    cutiesticky: 'Cutie w/ a Sticky',
+    waifumage: 'Super Chic w/ the Magic',
     anbu: 'ANBU',
     anbufighter: 'ANBU Melee',
     anburanger: 'ANBU Ranger',
@@ -95,9 +113,10 @@ var data = {
 };
 
 var meta = {
-  spaceguardian: [
+  // Psi-Ops
+  psiops: [
     {
-      value: ["Space Suit A", "Space Suit B", "Sci-Fi Jacket"],
+      value: ["Sci-Fi Jacket"],
       trait_type: "Clothes"
     },
     {
@@ -105,19 +124,19 @@ var meta = {
       trait_type: "Swords & Wings"
     },
   ],
-  spacewarrior: [
+  psiopssoldier: [
     {
-      value: ["Space Suit A", "Space Suit B", "Sci-Fi Jacket"],
+      value: ["Sci-Fi Jacket"],
       trait_type: "Clothes"
     },
     {
-      value: ["Double Katana", "Staff", "Short Staff", "Giant Sword", "Tassel Sword"],
+      value: ["Staff", "Short Staff", "Tassel Sword", "Giant Sword", "Double Katana"],
       trait_type: "Swords & Wings"
     },
   ],
-  spaceranger: [
+  psiopsranger: [
     {
-      value: ["Space Suit A", "Space Suit B", "Sci-Fi Jacket"],
+      value: ["Sci-Fi Jacket"],
       trait_type: "Clothes"
     },
     {
@@ -125,9 +144,9 @@ var meta = {
       trait_type: "Swords & Wings"
     },
   ],
-  spacemage: [
+  psiopsmage: [
     {
-      value: ["Space Suit A", "Space Suit B", "Sci-Fi Jacket"],
+      value: ["Sci-Fi Jacket"],
       trait_type: "Clothes"
     },
     {
@@ -135,6 +154,150 @@ var meta = {
       trait_type: "Swords & Wings"
     },
   ],
+  psiopsangel: [
+    {
+      value: ["Sci-Fi Jacket"],
+      trait_type: "Clothes"
+    },
+    {
+      value: ["Angel Wings"],
+      trait_type: "Swords & Wings"
+    },
+  ],
+  psiopsdevil: [
+    {
+      value: ["Sci-Fi Jacket"],
+      trait_type: "Clothes"
+    },
+    {
+      value: ["Devil Wings"],
+      trait_type: "Swords & Wings"
+    },
+  ],
+  // Cosmic
+  cosmic: [
+    {
+      value: ["Space Suit B"],
+      trait_type: "Clothes"
+    },
+    {
+      value: ["Tassel Sword"],
+      trait_type: "Swords & Wings"
+    },
+  ],
+  cosmicsoldier: [
+    {
+      value: ["Space Suit B"],
+      trait_type: "Clothes"
+    },
+    {
+      value: ["Staff", "Short Staff", "Space Sword", "Giant Sword", "Double Katana"],
+      trait_type: "Swords & Wings"
+    },
+  ],
+  cosmicranger: [
+    {
+      value: ["Space Suit B"],
+      trait_type: "Clothes"
+    },
+    {
+      value: ["M-16"],
+      trait_type: "Swords & Wings"
+    },
+  ],
+  cosmicmage: [
+    {
+      value: ["Space Suit B"],
+      trait_type: "Clothes"
+    },
+    {
+      value: ["Magic Staff"],
+      trait_type: "Swords & Wings"
+    },
+  ],
+  cosmicangel: [
+    {
+      value: ["Space Suit B"],
+      trait_type: "Clothes"
+    },
+    {
+      value: ["Angel Wings"],
+      trait_type: "Swords & Wings"
+    },
+  ],
+  cosmicdevil: [
+    {
+      value: ["Space Suit B"],
+      trait_type: "Clothes"
+    },
+    {
+      value: ["Devil Wings"],
+      trait_type: "Swords & Wings"
+    },
+  ],
+  // Astral
+  astral: [
+    {
+      value: ["Space Suit A"],
+      trait_type: "Clothes"
+    },
+    {
+      value: ["Staff"],
+      trait_type: "Swords & Wings"
+    },
+  ],
+  astralsoldier: [
+    {
+      value: ["Space Suit A"],
+      trait_type: "Clothes"
+    },
+    {
+      value: ["Tassel Sword", "Short Staff", "Space Sword", "Giant Sword", "Double Katana"],
+      trait_type: "Swords & Wings"
+    },
+  ],
+  astralranger: [
+    {
+      value: ["Space Suit A"],
+      trait_type: "Clothes"
+    },
+    {
+      value: ["M-16"],
+      trait_type: "Swords & Wings"
+    },
+  ],
+  astralmage: [
+    {
+      value: ["Space Suit A"],
+      trait_type: "Clothes"
+    },
+    {
+      value: ["Magic Staff"],
+      trait_type: "Swords & Wings"
+    },
+  ],
+  astralangel: [
+    {
+      value: ["Space Suit A"],
+      trait_type: "Clothes"
+    },
+    {
+      value: ["Angel Wings"],
+      trait_type: "Swords & Wings"
+    },
+  ],
+  astraldevil: [
+    {
+      value: ["Space Suit A"],
+      trait_type: "Clothes"
+    },
+    {
+      value: ["Devil Wings"],
+      trait_type: "Swords & Wings"
+    },
+  ],
+
+
   legionary: [
     {
       value: ["Battle Armor", "Fantasy Battle Gear"],
@@ -198,6 +361,28 @@ var meta = {
       value: ["Space Sword", "Giant Sword", "Tassel Sword", "Double Katana"],
       trait_type: "Swords & Wings"
     },
+    {
+      value: [undefined],
+      trait_type: "Props"
+    }
+  ],
+  cutiesticky: [
+    {
+      value: ["Long", "Long Shaggy", "Long Full", "Bangs", "Bun", "Streak Highlight", "Mid Middle Part", "Pony Tail", "Long Wavy", "Pigtails", "Choppy"],
+      trait_type: "Hair"
+    },
+    {
+      value: ["School Girl Uniform A", "School Girl Uniform B", "School Boy Uniform"],
+      trait_type: "Clothes"
+    },
+    {
+      value: ["Staff", "Long Staff"],
+      trait_type: "Swords & Wings"
+    },
+    {
+      value: [undefined],
+      trait_type: "Props"
+    }
   ],
   baddiegattie: [
     {
@@ -208,6 +393,10 @@ var meta = {
       value: ["M-16"],
       trait_type: "Swords & Wings"
     },
+    {
+      value: [undefined],
+      trait_type: "Props"
+    }
   ],
   waifumage: [
     {
@@ -217,6 +406,10 @@ var meta = {
     {
       value: ["Magic Staff"],
       trait_type: "Swords & Wings"
+    },
+    {
+      value: [undefined],
+      trait_type: "Props"
     },
   ],
   anbu: [
