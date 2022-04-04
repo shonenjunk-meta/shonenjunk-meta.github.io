@@ -1,0 +1,31 @@
+[
+  {
+    "category": "Armed",
+    "id": "psiops",
+    "name": "PSI-Ops",
+    "poster": 1234,
+    "story": "",
+    "traits": [
+      {
+        "value": ["School Girl Uniform B"], 
+        "trait_type": "Clothes"
+      },
+      {
+        "value": ["Glasses Red"],
+        "trait_type": "Props",
+      },
+      {
+        "value": [],
+        "trait_type": "Swords & Wings"
+      },
+    ],
+    "colors": {
+      "hair": [],
+      "eyes": [],
+      "clothes": [],
+      "backdrop": []
+    },
+    "whitelist": [123, 1555],
+    "blacklist": [0, 9001],
+  }
+]

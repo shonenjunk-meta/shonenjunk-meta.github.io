@@ -39,7 +39,7 @@ var data = {
 
     waifuknifu: 'Waifu w/ a Knifu',
     baddiegattie: 'Baddie w/ the Gattie',
-    cutiesticky: 'Cutie w/ a Sticky',
+    cutiestickie: 'Cutie w/ a Stickie',
     waifumage: 'Chic w/ the Magic',
     anbu: 'ANBU',
     anbufighter: 'ANBU Melee',
@@ -449,7 +449,7 @@ var meta = {
       trait_type: "Props"
     }
   ],
-  cutiesticky: [
+  cutiestickie: [
     {
       value: ["Long", "Long Shaggy", "Long Full", "Bangs", "Bun", "Streak Highlight", "Mid Middle Part", "Pony Tail", "Long Wavy", "Pigtails", "Choppy"],
       trait_type: "Hair"
