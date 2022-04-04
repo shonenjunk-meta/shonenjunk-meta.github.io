@@ -8,6 +8,7 @@ var data = {
     legionaryfighter: 'Legionary Fighter',
     legionaryranger: 'Legionary Ranger',
     legionarymage: 'Legionary Mage',
+    legionarycasualty: 'Legionary Casualty',
     waifuknifu: 'Waifu w/ a Knifu',
     baddiegattie: 'Baddie w/ the Gattie',
     waifumage: 'Waifu Mage',
@@ -50,6 +51,7 @@ var data = {
     anbuangel: 'ANBU Angel',
     chad: 'Chad',
     cosmicdemon: 'Cosmic Demon',
+    mj: 'MJ',
     daredevil: 'Daredevil',
     shinobispirit: 'Shinobi Spirit',
     evangelion: 'Evangelion',
@@ -164,6 +166,16 @@ var meta = {
     },
     {
       value: ["Magic Staff"],
+      trait_type: "Swords & Wings"
+    },
+  ],
+  legionarycasualty: [
+    {
+      value: ["Battle Armor", "Fantasy Battle Gear"],
+      trait_type: "Clothes"
+    },
+    {
+      value: ["Angel Wings", "Devil Wings"],
       trait_type: "Swords & Wings"
     },
   ],
@@ -363,7 +375,35 @@ var meta = {
   ],
   weeb: [
     {
-      value: ["School Boy Uniform", "School Girl Uniform A", "School Girl Uniform B"],
+      value: ["School Boy Uniform", ], //,"School Girl Uniform A", "School Girl Uniform B", "Polo Shirt", "Open Collar Shirt", "Mock Neck Sweater", "Sweatshirt", "Blue Sweater", "Sports Jersey"],
+      trait_type: "Clothes"
+    },
+    {
+      value: ["Glasses Red"],
+      trait_type: "Props",
+    },
+    {
+      value: [undefined],
+      trait_type: "Swords & Wings"
+    },
+  ],
+  geek: [
+    {
+      value: ["School Girl Uniform B"], 
+      trait_type: "Clothes"
+    },
+    {
+      value: ["Glasses Red"],
+      trait_type: "Props",
+    },
+    {
+      value: [undefined],
+      trait_type: "Swords & Wings"
+    },
+  ],
+  nerd: [
+    {
+      value: ["School Girl Uniform A"], 
       trait_type: "Clothes"
     },
     {
@@ -481,6 +521,16 @@ var meta = {
     {
       value: ["Devil Wings"],
       trait_type: "Swords & Wings"
+    }
+  ],
+  mj: [
+    {
+      value: ["Leather Jacket", "Cape", "Marching Band Jacket", "Banded Collar Jacket"],
+      trait_type: "Clothes"
+    },
+    {
+      value: ["Hat Hair"],
+      trait_type: "Hair"
     }
   ],
   daredevil: [
