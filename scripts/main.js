@@ -23,15 +23,24 @@ var data = {
     astralangel: 'Astral Angel',
     astraldevil: 'Astral Devil',
 
-    legionary: 'Psi-Ops',
-    legionaryfighter: 'Legionary Fighter',
+    legionary: 'Legionary',
+    legionarysoldier: 'Legionary Soldier',
     legionaryranger: 'Legionary Ranger',
     legionarymage: 'Legionary Mage',
-    legionarycasualty: 'Legionary Casualty',
+    legionaryangel: 'Fantasy Angel',
+    legionarydevil: 'Fantasy Demon',
+
+    cyborg: 'Cyborg',
+    cyborgsoldier: 'Cyborg Soldier',
+    cyborgranger: 'Cyborg Ranger',
+    cyborgmage: 'Cyborg Mage',
+    cyborgangel: 'Battle Angel',
+    cyborgdevil: 'Battle Demon',
+
     waifuknifu: 'Waifu w/ a Knifu',
     baddiegattie: 'Baddie w/ the Gattie',
     cutiesticky: 'Cutie w/ a Sticky',
-    waifumage: 'Super Chic w/ the Magic',
+    waifumage: 'Chic w/ the Magic',
     anbu: 'ANBU',
     anbufighter: 'ANBU Melee',
     anburanger: 'ANBU Ranger',
@@ -45,9 +54,11 @@ var data = {
     mastermelee: 'Master Melee',
     masterranger: 'Master Ranger',
     mastermage: 'Master Mage',
-    piratemelee: 'Pirate Melee',
-    pirateranger: 'Pirate Ranger',
+    piratemelee: 'Pirate Matey',
+    pirateranger: 'Pirate Rangy',
     shinobi: 'Shinobi',
+    shinobispirit: 'Shinobi Spirit',
+    shinobivengeance: 'Shinobi Vengeance',
 
     fullmatch: 'Full Match',
     triplematch: 'Triple Color Match',
@@ -65,7 +76,7 @@ var data = {
     master: 'Master',
     trait6: '6-Trait',
 
-    cyborg: 'Cyborg',
+    completecyborg: 'Complete Cyborg',
     saint: 'Saint',
     fallen: 'Fallen',
     anbuspirit: 'ANBU Spirit',
@@ -75,9 +86,10 @@ var data = {
     mj: 'MJ',
     cleanbean: 'Clean Bean',
     daredevil: 'Daredevil',
-    shinobispirit: 'Shinobi Spirit',
-    evangelion: 'Evangelion',
-    cosmicangel: 'Cosmic Angel',
+    hybridastralpilot: 'Hybrid Astral Pilot',
+    hybridcosmicpilot: 'Hybrid Cosmic Pilot',
+    astralpilot: 'Astral Pilot',
+    cosmicpilot: 'Cosmic Pilot',
     silverbuzzunique: 'Silver Buzz',
 
     edward: 'Edward', 
@@ -296,11 +308,10 @@ var meta = {
       trait_type: "Swords & Wings"
     },
   ],
-
-
+  // Legionary
   legionary: [
     {
-      value: ["Battle Armor", "Fantasy Battle Gear"],
+      value: ["Fantasy Battle Gear"],
       trait_type: "Clothes"
     },
     {
@@ -310,7 +321,7 @@ var meta = {
   ],
   legionaryfighter: [
     {
-      value: ["Battle Armor", "Fantasy Battle Gear"],
+      value: ["Fantasy Battle Gear"],
       trait_type: "Clothes"
     },
     {
@@ -320,7 +331,7 @@ var meta = {
   ],
   legionaryranger: [
     {
-      value: ["Battle Armor", "Fantasy Battle Gear"],
+      value: ["Fantasy Battle Gear"],
       trait_type: "Clothes"
     },
     {
@@ -330,7 +341,7 @@ var meta = {
   ],
   legionarymage: [
     {
-      value: ["Battle Armor", "Fantasy Battle Gear"],
+      value: ["Fantasy Battle Gear"],
       trait_type: "Clothes"
     },
     {
@@ -338,16 +349,88 @@ var meta = {
       trait_type: "Swords & Wings"
     },
   ],
-  legionarycasualty: [
+  legionaryangel: [
     {
-      value: ["Battle Armor", "Fantasy Battle Gear"],
+      value: ["Fantasy Battle Gear"],
       trait_type: "Clothes"
     },
     {
-      value: ["Angel Wings", "Devil Wings"],
+      value: ["Angel Wings"],
       trait_type: "Swords & Wings"
     },
   ],
+  legionarydevil: [
+    {
+      value: ["Fantasy Battle Gear"],
+      trait_type: "Clothes"
+    },
+    {
+      value: ["Devil Wings"],
+      trait_type: "Swords & Wings"
+    },
+  ],
+  // Cyborg
+  cyborg: [
+    {
+      value: ["Battle Armor"],
+      trait_type: "Clothes"
+    },
+    {
+      value: ["Small Staff"],
+      trait_type: "Swords & Wings"
+    },
+  ],
+  cyborgfighter: [
+    {
+      value: ["Battle Armor"],
+      trait_type: "Clothes"
+    },
+    {
+      value: ["Space Sword", "Tassel Sword", "Double Katana", "Short Staff", "Staff"],
+      trait_type: "Swords & Wings"
+    },
+  ],
+  cyborgranger: [
+    {
+      value: ["Battle Armor"],
+      trait_type: "Clothes"
+    },
+    {
+      value: ["M-16"],
+      trait_type: "Swords & Wings"
+    },
+  ],
+  cyborgmage: [
+    {
+      value: ["Battle Armor"],
+      trait_type: "Clothes"
+    },
+    {
+      value: ["Magic Staff"],
+      trait_type: "Swords & Wings"
+    },
+  ],
+  cyborgangel: [
+    {
+      value: ["Battle Armor"],
+      trait_type: "Clothes"
+    },
+    {
+      value: ["Angel Wings"],
+      trait_type: "Swords & Wings"
+    },
+  ],
+  cyborgdevil: [
+    {
+      value: ["Battle Armor"],
+      trait_type: "Clothes"
+    },
+    {
+      value: ["Devil Wings"],
+      trait_type: "Swords & Wings"
+    },
+  ],
+
   waifuknifu: [
     {
       value: ["Long", "Long Shaggy", "Long Full", "Bangs", "Bun", "Streak Highlight", "Mid Middle Part", "Pony Tail", "Long Wavy", "Pigtails", "Choppy"],
@@ -572,6 +655,26 @@ var meta = {
       trait_type: "Swords & Wings"
     },
   ],
+  shinobispirit: [
+    {
+      value: ["Headband"],
+      trait_type: "Props",
+    },
+    {
+      value: ["Angel Wings"],
+      trait_type: "Swords & Wings"
+    },
+  ],
+  shinobivengeance: [
+    {
+      value: ["Headband"],
+      trait_type: "Props",
+    },
+    {
+      value: ["Devil Wings"],
+      trait_type: "Swords & Wings"
+    },
+  ],
   weeb: [
     {
       value: ["School Boy Uniform", ], //,"School Girl Uniform A", "School Girl Uniform B", "Polo Shirt", "Open Collar Shirt", "Mock Neck Sweater", "Sweatshirt", "Blue Sweater", "Sports Jersey"],
@@ -662,24 +765,44 @@ var meta = {
       trait_type: "Swords & Wings"
     },
   ],
-  evangelion: [
+  hybridastralpilot: [
     {
-      value: ["Space Suit A", "Space Suit B"],
+      value: ["Space Suit A"],
       trait_type: "Clothes"
     },
     {
-      value: ["Comms A", "Comms B"],
+      value: ["Comms B"],
       trait_type: "Hair accessories",
     }
   ],
-  cosmicangel: [
+  astralpilot: [
+    {
+      value: ["Space Suit A"],
+      trait_type: "Clothes"
+    },
+    {
+      value: ["Comms A"],
+      trait_type: "Hair accessories",
+    }
+  ],
+  hybridcosmicpilot: [
     {
       value: ["Space Suit B"],
       trait_type: "Clothes"
     },
     {
-      value: ["Angel Wings"],
-      trait_type: "Swords & Wings"
+      value: ["Comms A"],
+      trait_type: "Hair accessories",
+    }
+  ],
+  cosmicpilot: [
+    {
+      value: ["Space Suit B"],
+      trait_type: "Clothes"
+    },
+    {
+      value: ["Comms B"],
+      trait_type: "Hair accessories",
     }
   ],
   fallen: [
@@ -710,26 +833,6 @@ var meta = {
     {
       value: ["Cape"],
       trait_type: "Clothes"
-    }
-  ],
-  cosmicdemon: [
-    {
-      value: ["Space Suit A"],
-      trait_type: "Clothes"
-    },
-    {
-      value: ["Devil Wings"],
-      trait_type: "Swords & Wings"
-    }
-  ],
-  battleangel: [
-    {
-      value: ["Battle Armor"],
-      trait_type: "Clothes"
-    },
-    {
-      value: ["Angel Wings"],
-      trait_type: "Swords & Wings"
     }
   ],
   mj: [
@@ -774,7 +877,7 @@ var meta = {
       trait_type: "Props"
     }
   ],
-  cyborg: [
+  completecyborg: [
     {
       value: ["Cyborg Eyes"],
       trait_type: "Eyes",
