@@ -47,12 +47,13 @@ var data = {
 
     cyborg: 'Cyborg',
     saint: 'Saint',
-    devilman: 'Devilman',
-    anbuangel: 'ANBU Angel',
+    fallen: 'Fallen',
+    anbuspirit: 'ANBU Spirit',
     chad: 'Chad',
     battleangel: 'Battle Angel',
     cosmicdemon: 'Cosmic Demon',
     mj: 'MJ',
+    cleanbean: 'Clean Bean',
     daredevil: 'Daredevil',
     shinobispirit: 'Shinobi Spirit',
     evangelion: 'Evangelion',
@@ -478,7 +479,7 @@ var meta = {
   ],
   cosmicangel: [
     {
-      value: ["Space Suit A", "Space Suit B", "Sci-Fi Jacket"],
+      value: ["Space Suit B"],
       trait_type: "Clothes"
     },
     {
@@ -486,7 +487,7 @@ var meta = {
       trait_type: "Swords & Wings"
     }
   ],
-  devilman: [
+  fallen: [
     {
       value: ["Devil Wings"],
       trait_type: "Swords & Wings"
@@ -496,7 +497,7 @@ var meta = {
       trait_type: "Clothes"
     }
   ],
-  anbuangel: [
+  anbuspirit: [
     {
       value: ["Angel Wings"],
       trait_type: "Swords & Wings"
@@ -518,7 +519,7 @@ var meta = {
   ],
   cosmicdemon: [
     {
-      value: ["Space Suit A", "Space Suit B", "Sci-Fi Jacket"],
+      value: ["Space Suit A"],
       trait_type: "Clothes"
     },
     {
@@ -546,6 +547,28 @@ var meta = {
       trait_type: "Hair"
     }
   ],
+  cleanbean : [
+    {
+      value: [undefined],
+      trait_type: "Swords & Wings"
+    },
+    {
+      value: [undefined],
+      trait_type: "Props"
+    },
+    {
+      value: [undefined],
+      trait_type: "Tattoos"
+    },
+    {
+      value: [undefined],
+      trait_type: "Hair accessories"
+    },
+    {
+      value: ["Bald"],
+      trait_type: "Hair"
+    }
+  ],
   daredevil: [
     {
       value: ["Angel Wings", "Devil Wings"],
@@ -553,16 +576,6 @@ var meta = {
     },
     {
       value: ["Eye Mask"],
-      trait_type: "Props"
-    }
-  ],
-  shinobispirit: [
-    {
-      value: ["Angel Wings", "Devil Wings"],
-      trait_type: "Swords & Wings"
-    },
-    {
-      value: ["Headband"],
       trait_type: "Props"
     }
   ],
