@@ -47,7 +47,7 @@ var data = {
 
     cyborg: 'Cyborg',
     saint: 'Saint',
-    demon: 'Demon',
+    devilman: 'Devilman',
     anbuangel: 'ANBU Angel',
     chad: 'Chad',
     battleangel: 'Battle Angel',
@@ -484,7 +484,7 @@ var meta = {
       trait_type: "Swords & Wings"
     }
   ],
-  demon: [
+  devilman: [
     {
       value: ["Devil Wings"],
       trait_type: "Swords & Wings"
