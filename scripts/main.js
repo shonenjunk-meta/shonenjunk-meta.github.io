@@ -1,5 +1,7 @@
 var data = {
   title: {
+    customcolorfilter: 'Custom Color Filter',
+
     spaceguardian: 'Space Guardian',
     spacewarrior: 'Space Warrior',
     spaceranger: 'Space Ranger',
@@ -898,6 +900,36 @@ var main = {
 
     return metaJunkies;
   },
+  getColorFilteredJunkies: function() {
+    let hairColor = document.getElementById("hairColor").value;
+    let eyeColor = document.getElementById("eyeColor").value;
+    let clothingColor = document.getElementById("clothingColor").value;
+    let backdropColor = document.getElementById("backdropColor").value;
+    
+
+    let metaJunkies = [];
+    let isValid = true;
+    junkies.forEach(junk => {
+      if (hairColor !== 'Any') {
+        isValid = junk.hair === hairColor;
+      }
+      
+      if (isValid && eyeColor !== 'Any') {
+        isValid = junk.eyes === eyeColor;
+      }
+      if (isValid && clothingColor !== 'Any') {
+        isValid = junk.clothes === clothingColor;
+      }
+      if (isValid && backdropColor !== 'Any') {
+        isValid = junk.backdrop === backdropColor;
+      }
+
+      if (isValid) { metaJunkies.push(junk); }
+      isValid = true;
+    });
+
+    return metaJunkies;
+  },
   loadMeta: function(metaName) {
     main.clearList();
     var innerHtml = '';
@@ -907,8 +939,9 @@ var main = {
       metaJunkies = this.getColorMetaJunkies(metaName);
     } else if (metaName.includes('unique')) {
       metaJunkies = this.getUniqueMetaJunkies(metaName);
+    } else if (metaName.includes('customcolorfilter')) {
+      metaJunkies = this.getColorFilteredJunkies();
     } else {
-
       metaJunkies = this.getMetaJunkies(meta[metaName]);
     }
 
@@ -978,9 +1011,10 @@ var main = {
       junkies[counter].eyes = colors.find((c) => c.hash === av.eyes && c.trait_type_name === 'eyes').color;
       junkies[counter].backdrop = colors.find((c) => c.hash === av.backdrop && c.trait_type_name === 'backdrop').color;
       junkies[counter].clothes = colors.find((c) => c.hash === av.clothes && c.trait_type_name === 'clothes').color;
+      // if (av.token_id === 3476) {
+      //   console.log(junkies[counter]);
+      // }
       counter++;
-
-
     }); 
   }
 };

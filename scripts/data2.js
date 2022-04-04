@@ -825,31 +825,36 @@ var colors = [
     "hash": "5533eee658e42ad1a7d57b526f5d981d19e930ed50ef86249c74b3bf99bc24b8",
     "name": "Qipao",
     "trait_type_name": "clothes",
-    "color": "base"
+    "color": "pink"
+    //"color": "base"
   },
   {
     "hash": "a089f48277940a6144b43b8da170aa5961886901ae4843eb8753c767892bb3c0",
     "name": "Karate Gi",
     "trait_type_name": "clothes",
-    "color": "base"
+    "color": "white"
+    //"color": "base"
   },
   {
     "hash": "c221c5ec832eac0020daf0bcfec9936317c80a390f5764a52949b85f8af38b74",
     "name": "Space Suit A",
     "trait_type_name": "clothes",
-    "color": "base"
+    "color": "red"
+    //"color": "base"
   },
   {
     "hash": "b86b7b23975c705a144907c0230c5b83ea42076d78f01267afaa01e80390c499",
     "name": "Space Suit B",
     "trait_type_name": "clothes",
-    "color": "base"
+    "color": "white"
+    //"color": "base"
   },
   {
     "hash": "513bd05d42b51d1986fc2ed574dac181a322232401b583d2f88632d2d7918d06",
     "name": "Battle Armor",
     "trait_type_name": "clothes",
-    "color": ""
+    "color": "black"
+    //"color": ""
   },
   {
     "hash": "c19d28cf93cd7588b2fd3063018f79d8a536b3f3d1621df0a09962de5b428a5e",
@@ -861,7 +866,8 @@ var colors = [
     "hash": "fcd7b5a1e7171e556937464fc8da8350fc6aafd9826b498737ee049ccec0d8d1",
     "name": "Noragi",
     "trait_type_name": "clothes",
-    "color": "base"
+    "color": "red"
+    //"color": "base"
   },
   {
     "hash": "c4a10069c14786ddd5e348bec76747a2b58e23fb8108f09cce800d31fafbb9fa",
@@ -879,7 +885,8 @@ var colors = [
     "hash": "0db11983775b231fef31ab27f3912d6bd098684ec754f4056d1602a9973b80f6",
     "name": "Fantasy Battle Gear",
     "trait_type_name": "clothes",
-    "color": "base"
+    "color": "brown"
+    //"color": "base"
   },
   {
     "hash": "feb5772186260cb490f59fdd83da460a07c855079c8c0cf0c07ca3dc8ede2283",
@@ -891,13 +898,15 @@ var colors = [
     "hash": "7a9d370d2f07e5ac7ab9b98c7fd8de031c3ab639cdddbabf3816e74568722990",
     "name": "Cape",
     "trait_type_name": "clothes",
-    "color": "base"
+    "color": "red"
+    //"color": "base"
   },
   {
     "hash": "a280c6f6d60960d1f4906f238fdaf07a0a50233b3925b5fc6f77d08960844e96",
     "name": "Kimono",
     "trait_type_name": "clothes",
-    "color": "base"
+    "color": "black"
+    //"color": "base"
   },
   {
     "hash": "6803c1656c09e0bc00b798af7f11551bf1e23eab32a9afd84ae91528b4948945",
@@ -909,7 +918,8 @@ var colors = [
     "hash": "f1c43c2dbe5c3ecc6822b89ff6d0cf8276ba17e653008ceac0d5148fd559e430",
     "name": "Popped Collar",
     "trait_type_name": "clothes",
-    "color": "base"
+    "color": "blue"
+    //"color": "base"
   },
   {
     "hash": "cf6dfc092238bb800651fff9bbba0b48d6f257a258596bb04b8daaf4c1d34edb",
@@ -957,13 +967,15 @@ var colors = [
     "hash": "01edb7cf87dce5654fb436ea932c2bc2e6ee3d41fadfb9959827ec25b94c9f12",
     "name": "Henley Shirt",
     "trait_type_name": "clothes",
-    "color": "base"
+    "color": "red"
+    //"color": "base"
   },
   {
     "hash": "bb9549c3f82611938aa467a21d500bafab479417ac108c2aabd11169388e7774",
     "name": "Banded Collar Jacket",
     "trait_type_name": "clothes",
-    "color": "base"
+    "color": "black"
+    //"color": "base"
   },
   {
     "hash": "23967eb6dc90d19a84769ed23ce19b1f344f3970d5c631ab9b1d87f55253cb3d",
@@ -1125,7 +1137,8 @@ var colors = [
     "hash": "1ef3250d5a86d665f73e2f69998bba070270a43be20322ce1e6a05dd52d50cc4",
     "name": "Sci-Fi Jacket",
     "trait_type_name": "clothes",
-    "color": "base"
+    "color": "black"
+    //"color": "base"
   },
   {
     "hash": "c591e498bf497a77d0883af27060c1e5384a9d93393f9bdf5f8ac321fe520497",
@@ -1149,7 +1162,8 @@ var colors = [
     "hash": "b3e181bf84b4c7133378db5bb0490e93b608ac4b8d2ba57277489c21b0956dde",
     "name": "Open Collar Shirt",
     "trait_type_name": "clothes",
-    "color": "base"
+    "color": "white"
+    //"color": "base"
   },
   {
     "hash": "3db9e21938978e842c948048f426ba37c9018f27e47a090f07e2e9401de70805",
@@ -1167,13 +1181,15 @@ var colors = [
     "hash": "d088c74bd5e768e055ac05851559098d8afb28e01a8cf8ec86cab509d33dd034",
     "name": "Marching Band Jacket",
     "trait_type_name": "clothes",
-    "color": "base"
+    "color": "pink"
+    //"color": "base"
   },
   {
     "hash": "c689d33ed7273ee2e989230f004b9561783b4593a895ee698f1dc39880fc662f",
     "name": "Androgynous Jacket",
     "trait_type_name": "clothes",
-    "color": "base"
+    "color": "blue"
+    //"color": "base"
   },
   {
     "hash": "b7a9fc87c3ab2490117c1baa65d7af43e0f9f217d72c2ca61fb08cf783c7524a",
