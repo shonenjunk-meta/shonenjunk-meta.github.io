@@ -63,6 +63,7 @@ var data = {
     yugi: 'Yugi',
     naruto: 'Naruto',
     sailormoon: 'Sailor Moon',
+    kamina: 'Kamina',
     opm: 'OPM',
     sakura: 'Sakura',
     eren: 'Eren',
@@ -611,6 +612,16 @@ var meta = {
     },
     {
       value: ["Pigtails"],
+      trait_type: "Hair",
+    },
+  ],
+  kamina: [
+    {
+      value: ["Stunner Shades"],
+      trait_type: "Props"
+    },
+    {
+      value: ["Rockstar"],
       trait_type: "Hair",
     },
   ],
