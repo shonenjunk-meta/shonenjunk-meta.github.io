@@ -1,0 +1,29 @@
+[
+  {
+    "category": "Armed",    // category of this meta
+    "id": "psiops",         // lowercase no special characters or whitespaces must be globally unique
+    "name": "PSI-Ops",      // this will be the displayed name
+    "poster": 1234,         // token id of the poster
+    "story": "",            // backstory if any
+    "traits": [             // trait filters
+      {
+        "value": ["Sci-Fi Jacket"],  // use "none" to ensure trait is not existing for optional traits like weapons, accessories, tattoos
+        "trait_type": "Clothes"
+      },
+      {
+        "value": ["Space Sword"],
+        "trait_type": "Swords & Wings"
+      }
+    ],
+    "colors": {             // color filters, leave empty for any, for matching use e.g. "match-hair": "match-eyes" will match hair with eyes
+      "hair": [],
+      "eyes": [],
+      "clothes": [],
+      "backdrop": [],
+      "backprop": []
+    },
+    "trait_count": 6,       // trait count filter can have value of 6-10
+    "whitelist": [],        // skips all the rules and includes the token ids in this list
+    "blacklist": []        // skips all the rules and excludes the token ids in this list
+  }
+]
