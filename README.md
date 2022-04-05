@@ -3,7 +3,7 @@
 
 https://shonenjunk-meta.github.io
 
-This project is intended to be a simple way for community to group together Shonen Junk NFTs that are unanimously accepted as desiable may it be interms of data or visual representation of that NFT.
+This project is intended to be a simple way for community to group together Shonen Junk NFTs that are unanimously accepted as desirable interms of data or visual representation.
 
 ## Rules/Guidelines for Adding New Meta
 >This is open for changes as long as there is a consensus
