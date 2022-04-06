@@ -48,7 +48,7 @@ This project is intended to be a simple way for community to group together Shon
     ],
     "colors": {             // color filters, for matching use e.g. "match-hair": "match-eyes" will match hair with eyes
       "hair": [],                           // empty means it will match any color
-      "eyes": [match-clothes],              // any eye color that match clothes
+      "eyes": "match-clothes",              // any eye color that match clothes
       "clothes": [],                      
       "backdrop": ["black", "yellow"],       // multiple value is allowed
       "backprop": ["red"]                   // will match only red
