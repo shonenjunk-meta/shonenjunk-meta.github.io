@@ -57,7 +57,6 @@ This project is intended to be a simple way for community to group together Shon
     "whitelist": [],        // skips all the rules and includes the token ids in this list
     "blacklist": []        // skips all the rules and excludes the token ids in this list
   }
-]
 ```
 3. Ensure the JSON file is valid using https://jsonlint.com/
 4. Save the file.
