@@ -26,6 +26,18 @@ var data = {
   },
   initializeData: function() {
     let counter = 0;
+    let midShaggyHashes = [
+      'd5887d73aef36b78cec25617a5c5f9b8a23c492b4015d524b7fff1b1838c897a',
+      '38e303d81668d8c57cc8f9e9ca2175f7a616f227d0467b6c3d11befd7d458bab',
+      'b5072413ba96d1be73db67357b06f82620962d2f956b7ae09fbbfbbd472b67c8',
+      'ffa3f213ab28ce6c12fefb4116adc464643ce746b3fb8536040f5c1b11e0ec74',
+      '6dcde5f52dac6b577d7bfd8b59f0175c431d35a1e98e32b2f3d4445afa12c708',
+      'b16887830f25b7e4d982ea840cfe72e430b407025d9534baae6f7aefb1a51a5e',
+      '0818f1b0284b1c5906d63abb1c0b64475b794761e01bbadb42d28167a5383096',
+      'd59f283e0747dfd48ccfc9a29d6ee221f1ac1f8c2c6df3569df64775f106c4a3',
+      '4ad5e3d787690292f3c6eb38211808758df72c3cd7555eabcf4a66af7b891474'
+    ];
+
     avatars.forEach((av) => {
       junkies[counter].colors = {
         hair: traitColors.find((c) => c.hash === av.hair && c.trait_type_name === 'hair')?.color,
@@ -34,8 +46,14 @@ var data = {
         backdrop: traitColors.find((c) => c.hash === av.backdrop && c.trait_type_name === 'backdrop')?.color,
         backprop: traitColors.find((c) => c.hash === av.backprop && c.trait_type_name === 'backprop')?.color,
         prop: traitColors.find((c) => c.hash === av.prop && c.trait_type_name === 'prop')?.color,
-        hairprop: traitColors.find((c) => c.hash === av.prop && c.trait_type_name === 'hairprop')?.color,
+        hairprop: traitColors.find((c) => c.hash === av.prop && c.trait_type_name === 'hairprop')?.color
       };
+
+      // Mid Shaggy Fix
+      if (midShaggyHashes.includes(avatars[counter].hair)) {
+        junkies[counter].metadata.attributes.find((att) => att.trait_type === 'Hair').value = 'Mid Shaggy';
+      }
+
       counter++;
     });
   },
@@ -335,10 +353,26 @@ var app = {
           let matchBackpropWith = meta.colors.backprop.replace('match-', '');
           validBackprop = junk.colors.backprop === junk.colors[matchBackpropWith] && junk.colors.backprop !== 'base';
         } else if(!validBackprop) {
-          validBackprop = meta.colors.backprop.includes(junk.colors.backprop);
+          validBackprop = meta.colors.backprop.includes(junk.colors.backprop) || junk.colors.backprop === undefined;
         }
 
-        isValid = validHair && validEyes && validClothes && validBackdrop && validBackprop;
+        let validHairProp = meta.colors.hairprop === undefined;
+        if (!validHairProp && meta.colors.hairprop.includes('match-')) {
+          let matchHairPropWith = meta.colors.hairprop.replace('match-', '');
+          validHairProp = junk.colors.hairprop === junk.colors[matchHairPropWith] && junk.colors.hairprop !== 'base';
+        } else if(!validHairProp) {
+          validHairProp = meta.colors.hairprop.includes(junk.colors.hairprop) || junk.colors.hairprop === undefined;
+        }
+
+        let validProp = meta.colors.prop === undefined;
+        if (!validProp && meta.colors.prop.includes('match-')) {
+          let matchPropWith = meta.colors.prop.replace('match-', '');
+          validBackprop = junk.colors.prop === junk.colors[matchPropWith] && junk.colors.prop !== 'base';
+        } else if(!validProp) {
+          validProp = meta.colors.prop.includes(junk.colors.prop) || junk.colors.prop === undefined;
+        }
+
+        isValid = validHair && validEyes && validClothes && validBackdrop && validBackprop && validProp;
       }
       // Verify Trait Count
       isValid = (isValid && !meta.trait_count) || meta.trait_count === junk.metadata.attributes.length;
