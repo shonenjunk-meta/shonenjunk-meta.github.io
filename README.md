@@ -48,7 +48,7 @@ This project is intended to be a simple way for community to group together Shon
     ],
     "colors": {             // color filters, for matching use e.g. "match-hair": "match-eyes" will match hair with eyes
       "hair": [],                           // empty means it will match any color
-      "eyes": [match-clothes],              // any eye color that match clothes
+      "eyes": "match-clothes",              // any eye color that match clothes
       "clothes": [],                      
       "backdrop": ["black", "yellow"],       // multiple value is allowed
       "backprop": ["red"]                   // will match only red
@@ -57,7 +57,6 @@ This project is intended to be a simple way for community to group together Shon
     "whitelist": [],        // skips all the rules and includes the token ids in this list
     "blacklist": []        // skips all the rules and excludes the token ids in this list
   }
-]
 ```
 3. Ensure the JSON file is valid using https://jsonlint.com/
 4. Save the file.
