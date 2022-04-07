@@ -55,7 +55,8 @@ This project is intended to be a simple way for community to group together Shon
     },
     "trait_count": 6,       // trait count filter can have value of 6-10
     "whitelist": [],        // skips all the rules and includes the token ids in this list
-    "blacklist": []        // skips all the rules and excludes the token ids in this list
+    "blacklist": [],        // skips all the rules and excludes the token ids in this list
+    "sort": "backdrop-color" // custom sorting else defaults to rank sorting
   }
 ```
 3. Ensure the JSON file is valid using https://jsonlint.com/

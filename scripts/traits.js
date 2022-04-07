@@ -4894,7 +4894,7 @@ var traitColors = [
    "hash": "109c210ce96866d11957ebe7db7a027c6e5f6a1b46baa65c939c9e0fe02623aa",
    "name": "Long Side Tied Hair",
    "trait_type_name": "hair",
-   "color": "base"
+   "color": "black"
  },
  {
    "hash": "109c210ce96866d11957ebe7db7a027c6e5f6a1b46baa65c939c9e0fe02623ac",

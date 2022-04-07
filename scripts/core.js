@@ -46,14 +46,13 @@ var data = {
         backdrop: traitColors.find((c) => c.hash === av.backdrop && c.trait_type_name === 'backdrop')?.color,
         backprop: traitColors.find((c) => c.hash === av.backprop && c.trait_type_name === 'backprop')?.color,
         prop: traitColors.find((c) => c.hash === av.prop && c.trait_type_name === 'prop')?.color,
-        hairprop: traitColors.find((c) => c.hash === av.prop && c.trait_type_name === 'hairprop')?.color
+        hairprop: traitColors.find((c) => c.hash === av.hairprop && c.trait_type_name === 'hairprop')?.color
       };
 
       // Mid Shaggy Fix
       if (midShaggyHashes.includes(avatars[counter].hair)) {
         junkies[counter].metadata.attributes.find((att) => att.trait_type === 'Hair').value = 'Mid Shaggy';
       }
-
       counter++;
     });
   },
@@ -315,11 +314,11 @@ var app = {
       }
       // Verify Color Matches
       if (isValid && meta.colors) {
+
         let validHair = meta.colors.hair === undefined;
-        // Check for matching
         if (!validHair && meta.colors.hair.includes('match-')) {
           let matchHairWith = meta.colors.hair.replace('match-', '');
-          validHair = junk.colors.hair === junk.colors[matchHairWith] && junk.colors.hair !== 'base';
+          validHair = junk.colors.hair === junk.colors[matchHairWith];
         } else if(!validHair) {
           validHair = meta.colors.hair.includes(junk.colors.hair);
         }
@@ -327,7 +326,7 @@ var app = {
         let validEyes = meta.colors.eyes === undefined;
         if (!validEyes && meta.colors.eyes.includes('match-')) {
           let matchEyesWith = meta.colors.eyes.replace('match-', '');
-          validEyes = junk.colors.eyes === junk.colors[matchEyesWith] && junk.colors.eyes !== 'base';
+          validEyes = junk.colors.eyes === junk.colors[matchEyesWith];
         } else if(!validEyes) {
           validEyes = meta.colors.eyes.includes(junk.colors.eyes);
         }
@@ -335,7 +334,7 @@ var app = {
         let validClothes = meta.colors.clothes === undefined;
         if (!validClothes && meta.colors.clothes.includes('match-')) {
           let matchClothessWith = meta.colors.clothes.replace('match-', '');
-          validClothes = junk.colors.clothes === junk.colors[matchClothessWith] && junk.colors.clothes !== 'base';
+          validClothes = junk.colors.clothes === junk.colors[matchClothessWith];
         } else if(!validClothes) {
           validClothes = meta.colors.clothes.includes(junk.colors.clothes);
         }
@@ -343,36 +342,36 @@ var app = {
         let validBackdrop = meta.colors.backdrop === undefined;
         if (!validBackdrop && meta.colors.backdrop.includes('match-')) {
           let matchBackdropWith = meta.colors.backdrop.replace('match-', '');
-          validBackdrop = junk.colors.backdrop === junk.colors[matchBackdropWith] && junk.colors.backdrop !== 'base';
+          validBackdrop = junk.colors.backdrop === junk.colors[matchBackdropWith];
         } else if(!validBackdrop) {
           validBackdrop = meta.colors.backdrop.includes(junk.colors.backdrop);
         }
 
-        let validBackprop = meta.colors.backprop === undefined;
+        let validBackprop = meta.colors.backprop === undefined || junk.colors.backprop === 'base';
         if (!validBackprop && meta.colors.backprop.includes('match-')) {
           let matchBackpropWith = meta.colors.backprop.replace('match-', '');
-          validBackprop = junk.colors.backprop === junk.colors[matchBackpropWith] && junk.colors.backprop !== 'base';
+          validBackprop = (junk.colors.backprop === junk.colors[matchBackpropWith]);
         } else if(!validBackprop) {
-          validBackprop = meta.colors.backprop.includes(junk.colors.backprop) || junk.colors.backprop === undefined;
+          validBackprop = meta.colors.backprop.includes(junk.colors.backprop);
         }
 
-        let validHairProp = meta.colors.hairprop === undefined;
+        let validHairProp = meta.colors.hairprop === undefined || junk.colors.hairprop === 'base';
         if (!validHairProp && meta.colors.hairprop.includes('match-')) {
           let matchHairPropWith = meta.colors.hairprop.replace('match-', '');
-          validHairProp = junk.colors.hairprop === junk.colors[matchHairPropWith] && junk.colors.hairprop !== 'base';
+          validHairProp = junk.colors.hairprop === junk.colors[matchHairPropWith];
         } else if(!validHairProp) {
-          validHairProp = meta.colors.hairprop.includes(junk.colors.hairprop) || junk.colors.hairprop === undefined;
+          validHairProp = meta.colors.hairprop.includes(junk.colors.hairprop);
         }
 
-        let validProp = meta.colors.prop === undefined;
+        let validProp = meta.colors.prop === undefined  || junk.colors.prop === 'base';
         if (!validProp && meta.colors.prop.includes('match-')) {
           let matchPropWith = meta.colors.prop.replace('match-', '');
-          validBackprop = junk.colors.prop === junk.colors[matchPropWith] && junk.colors.prop !== 'base';
+          validProp = junk.colors.prop === junk.colors[matchPropWith];
         } else if(!validProp) {
-          validProp = meta.colors.prop.includes(junk.colors.prop) || junk.colors.prop === undefined;
+          validProp = meta.colors.prop.includes(junk.colors.prop);
         }
 
-        isValid = validHair && validEyes && validClothes && validBackdrop && validBackprop && validProp;
+        isValid = validHair && validEyes && validClothes && validBackdrop && validBackprop && validHairProp && validProp;
       }
       // Verify Trait Count
       isValid = (isValid && !meta.trait_count) || meta.trait_count === junk.metadata.attributes.length;
@@ -380,8 +379,15 @@ var app = {
       if (!blacklisted && (whitelisted || isValid)) { metaJunkies.push(junk); }
     });
 
-    // Sort by Rarity
-    metaJunkies.sort(function(a, b){return a.rarity.rank - b.rarity.rank});
+    if (meta.sort?.includes('-color')) {
+      // Sort by Color
+      meta.sort = meta.sort.replace('-color','')
+      metaJunkies.sort(function(a, b){ return ('' + a.colors[meta.sort]).localeCompare(b.colors[meta.sort]) });
+    } else {
+      // Sort by Rarity
+      metaJunkies.sort(function(a, b){return a.rarity.rank - b.rarity.rank});
+    }
+
     return metaJunkies;
   },
 }
