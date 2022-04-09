@@ -1,6 +1,3 @@
-// Global Variables
-var metadata = [];
-
 var http = {
   loadJSON: function(path, callback) {   
 
