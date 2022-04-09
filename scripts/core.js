@@ -16,6 +16,11 @@ var http = {
 
 var data = {
   loadMetadata: function() {
+    if (metadata !== null) {
+      app.start();
+      return;
+    }
+
     http.loadJSON('https://raw.githubusercontent.com/shonenjunk-meta/data/main/community-metadata.json', function(response) {
       metadata = JSON.parse(response);
       app.start();

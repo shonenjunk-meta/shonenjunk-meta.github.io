@@ -1,1 +1,1 @@
-var metadata = [];
+var metadata = null;
