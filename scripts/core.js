@@ -205,12 +205,14 @@ var app = {
         counter = 0;
       }
 
+      let posterImage = isNaN(meta.poster) ?  meta.poster : junkies[meta.poster].metadata.image;
+
       // Add Items
       template += `
         <div class="level-item has-text-centered">
           <div onclick="app.getMetaCollection('${meta.id}');">
             <p>
-              <img src="${junkies[meta.poster].metadata.image}"  style="max-width: 140px; padding-bottom: 10px;">
+              <img src="${posterImage}"  style="max-width: 140px; padding-bottom: 10px;">
             </p>
             <p class="heading">${meta.name}</p>
           </div>
@@ -296,15 +298,17 @@ var app = {
     let isValid = true;
 
     junkies.forEach(junk => {
-      isValid = true;
       let whitelisted = meta.whitelist?.includes(junk.tokenId);
       let blacklisted = meta.blacklist?.includes(junk.tokenId);
-       // Verify Trait Matches
-      if (meta.traits) {
+      let special = whitelisted || blacklisted;
+      isValid = !special && (meta.traits || meta.colors || meta.trait_count);
+
+      // Verify Trait Matches
+      if (isValid && meta.traits) {
         for (let i = 0; i < meta.traits.length; i++) {
           traitFilter = meta.traits[i];
           let junkTraits = junk.metadata.attributes;
-  
+
           if (traitFilter.value === 'none' && junkTraits.find((att) => att.trait_type === traitFilter.trait_type)?.value === undefined) {
             isValid = true;
           } else {
@@ -314,9 +318,9 @@ var app = {
           if (!isValid) { break; }
         }
       }
+
       // Verify Color Matches
       if (isValid && meta.colors) {
-
         let validHair = meta.colors.hair === undefined;
         if (!validHair && meta.colors.hair.includes('match-')) {
           let matchHairWith = meta.colors.hair.replace('match-', '');
@@ -375,8 +379,11 @@ var app = {
 
         isValid = validHair && validEyes && validClothes && validBackdrop && validBackprop && validHairProp && validProp;
       }
+
       // Verify Trait Count
-      isValid = (isValid && !meta.trait_count) || meta.trait_count === junk.metadata.attributes.length;
+      if (isValid && meta.trait_count) {
+        isValid = meta.trait_count === junk.metadata.attributes.length;
+      }
       
       if (!blacklisted && (whitelisted || isValid)) { metaJunkies.push(junk); }
     });
