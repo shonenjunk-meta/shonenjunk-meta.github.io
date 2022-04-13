@@ -3891,7 +3891,7 @@ var traitColors = [
    "hash": "f0812ff636f6c0d54e509941a46308575e6611d5ddb6377da21c2bcc6aca05fa",
    "name": "Superhero",
    "trait_type_name": "clothes",
-   "color": "base"
+   "color": "yellow"
  },
  {
    "hash": "9987512d169df75fef220fe475dddff722055e7e4d92dbc40182b14d11e490f3",
@@ -4477,13 +4477,13 @@ var traitColors = [
  },
  {
    "hash": "199bf5fccc619b75fe8726c1181f21d08f8395277fbe2a7d4099f4b3633d9f87",
-   "name": "Glasses Red",
+   "name": "Glasses",
    "trait_type_name": "prop",
    "color": "black"
  },
  {
    "hash": "73b7324571b2623ed0cfa84a467b13d81ac517c8f9f3e198cbe3e6f8352d4072",
-   "name": "Glasses Red",
+   "name": "Glasses",
    "trait_type_name": "prop",
    "color": "silver"
  },
@@ -5084,7 +5084,7 @@ var traitColors = [
  },
  {
    "hash": "bb94d7d6c92eb77f77e673ef8d5907cb3b6c325da4302b4cb16d1ca8f2ea226a",
-   "name": "Glasses Red",
+   "name": "Glasses",
    "trait_type_name": "prop",
    "color": "red"
  },

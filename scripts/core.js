@@ -55,6 +55,7 @@ var data = {
       if (midShaggyHashes.includes(avatars[counter].hair)) {
         junkies[counter].metadata.attributes.find((att) => att.trait_type === 'Hair').value = 'Mid Shaggy';
       }
+
       counter++;
     });
   },
@@ -189,10 +190,11 @@ var app = {
         counter = 0;
         // Create Category
         let endOfCategory = category !== '';
+        let coreMeta = meta?.meta_type === 0 ? 'is-info' : ''; 
         if (endOfCategory) { template += `</nav></section>`; }
 
         template += `
-        <section class="hero is-small" style="padding: 20px;">
+        <section class="hero is-small ${coreMeta}" style="padding: 20px;">
         <h1 class="heading title"> ${meta.category}</h1>
         <nav class="level" >`;
 
@@ -228,7 +230,7 @@ var app = {
     let eyeColor = document.getElementById("eyeColor").value;
     let clothingColor = document.getElementById("clothingColor").value;
     let backdropColor = document.getElementById("backdropColor").value;
-    let backpropColor = document.getElementById("backpropColor").value;
+    // let backpropColor = document.getElementById("backpropColor").value;
 
     let metaJunkies = [];
     let isValid = true;
@@ -246,9 +248,9 @@ var app = {
       if (isValid && backdropColor !== 'Any') {
         isValid = junk.colors.backdrop === backdropColor;
       }
-      if (isValid && backpropColor !== 'Any') {
-        isValid = junk.colors.backprop === backpropColor;
-      }
+      // if (isValid && backpropColor !== 'Any') {
+      //   isValid = junk.colors.backprop === backpropColor;
+      // }
 
       if (isValid) { metaJunkies.push(junk); }
       isValid = true;
@@ -324,7 +326,7 @@ var app = {
         let validHair = meta.colors.hair === undefined;
         if (!validHair && meta.colors.hair.includes('match-')) {
           let matchHairWith = meta.colors.hair.replace('match-', '');
-          validHair = junk.colors.hair === junk.colors[matchHairWith];
+          validHair = junk.colors.hair === junk.colors[matchHairWith] && junk.colors.hair !== 'base';
         } else if(!validHair) {
           validHair = meta.colors.hair.includes(junk.colors.hair);
         }
@@ -332,7 +334,7 @@ var app = {
         let validEyes = meta.colors.eyes === undefined;
         if (!validEyes && meta.colors.eyes.includes('match-')) {
           let matchEyesWith = meta.colors.eyes.replace('match-', '');
-          validEyes = junk.colors.eyes === junk.colors[matchEyesWith];
+          validEyes = junk.colors.eyes === junk.colors[matchEyesWith] && junk.colors.hair !== 'base';
         } else if(!validEyes) {
           validEyes = meta.colors.eyes.includes(junk.colors.eyes);
         }
@@ -340,7 +342,7 @@ var app = {
         let validClothes = meta.colors.clothes === undefined;
         if (!validClothes && meta.colors.clothes.includes('match-')) {
           let matchClothessWith = meta.colors.clothes.replace('match-', '');
-          validClothes = junk.colors.clothes === junk.colors[matchClothessWith];
+          validClothes = junk.colors.clothes === junk.colors[matchClothessWith] && junk.colors.hair !== 'base';
         } else if(!validClothes) {
           validClothes = meta.colors.clothes.includes(junk.colors.clothes);
         }
@@ -348,7 +350,7 @@ var app = {
         let validBackdrop = meta.colors.backdrop === undefined;
         if (!validBackdrop && meta.colors.backdrop.includes('match-')) {
           let matchBackdropWith = meta.colors.backdrop.replace('match-', '');
-          validBackdrop = junk.colors.backdrop === junk.colors[matchBackdropWith];
+          validBackdrop = junk.colors.backdrop === junk.colors[matchBackdropWith] && junk.colors.hair !== 'base';
         } else if(!validBackdrop) {
           validBackdrop = meta.colors.backdrop.includes(junk.colors.backdrop);
         }
@@ -356,7 +358,7 @@ var app = {
         let validBackprop = meta.colors.backprop === undefined || junk.colors.backprop === 'base';
         if (!validBackprop && meta.colors.backprop.includes('match-')) {
           let matchBackpropWith = meta.colors.backprop.replace('match-', '');
-          validBackprop = (junk.colors.backprop === junk.colors[matchBackpropWith]);
+          validBackprop = junk.colors.backprop === junk.colors[matchBackpropWith];
         } else if(!validBackprop) {
           validBackprop = meta.colors.backprop.includes(junk.colors.backprop);
         }
@@ -383,6 +385,31 @@ var app = {
       // Verify Trait Count
       if (isValid && meta.trait_count) {
         isValid = meta.trait_count === junk.metadata.attributes.length;
+      }
+
+      // Verify Color Count
+      if (isValid && (meta.colors?.max_match || meta.colors?.match_count)) {
+        const arr = [junk.colors.hair, junk.colors.eyes, junk.colors.clothes, junk.colors.backdrop];
+        const colorSummary = {};
+        let maxColorMatch = 0;
+        let matchCount = 0;
+        arr.forEach((x) => {
+          if (x !== 'base') {
+            colorSummary[x] = (colorSummary[x] || 0) + 1;
+          }
+          // Watch max color match
+          if (colorSummary[x] > maxColorMatch) { 
+            maxColorMatch = colorSummary[x];
+          }
+        });
+        // Count doubles
+        Object.values(colorSummary).forEach((value) => {
+          if (value === meta.colors.max_match) {
+            matchCount = matchCount + 1;
+          }
+        });
+
+        isValid = maxColorMatch === meta.colors.max_match && (!meta.colors.match_count || meta.colors.match_count === matchCount);
       }
       
       if (!blacklisted && (whitelisted || isValid)) { metaJunkies.push(junk); }
