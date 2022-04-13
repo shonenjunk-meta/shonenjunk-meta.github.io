@@ -190,7 +190,7 @@ var app = {
         counter = 0;
         // Create Category
         let endOfCategory = category !== '';
-        let coreMeta = meta?.meta_type === 0 ? 'is-info' : ''; 
+        let coreMeta = meta?.meta_type === 0 ? 'is-dark' : ''; 
         if (endOfCategory) { template += `</nav></section>`; }
 
         template += `
