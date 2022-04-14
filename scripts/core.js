@@ -154,10 +154,10 @@ var template = {
     let coreMetaTags = '';
     let communityMetaTags = '';
     coreMeta.forEach((meta) => {
-      coreMetaTags += `<span class="tag is-info" style="margin: 5px;">${meta}</span>`;
+      coreMetaTags += `<span class="tag is-info" style="margin: 5px;" title="${meta.story}">${meta.name}</span>`;
     });
     communityMeta.forEach((meta) => {
-      communityMetaTags += `<span class="tag is-warning" style="margin: 5px;">${meta}</span>`;
+      communityMetaTags += `<span class="tag is-warning" style="margin: 5px;" title="${meta.story}">${meta.name}</span>`;
     });
     return `
       <div class="card" style="max-width: 300px; margin-bottom: 20px;">
@@ -284,7 +284,7 @@ var app = {
 
     coreMeta.forEach((meta) => {
       if (this.isIncludedInMeta(junkies[tokenId], meta)) {
-        myMeta.push(meta.name);
+        myMeta.push(meta);
       }
     });
 
@@ -297,7 +297,7 @@ var app = {
 
     communityMeta.forEach((meta) => {
       if (this.isIncludedInMeta(junkies[tokenId], meta)) {
-        myMeta.push(meta.name);
+        myMeta.push(meta);
       }
     });
 
