@@ -89,12 +89,18 @@ var ui = {
   collection: function() {
     return document.getElementById("collection");
   },
+  searchResultWrapper: function() {
+    return document.getElementById("searchResultWrapper");
+  },
+  tokenId: function() {
+    return document.getElementById("tokenId");
+  }
 };
 
 var template = {
   menuIsOpen: false,
   clearCollection: function() {
-    ui.collectionContainer().innerHTML = "";
+    ui.collectionContainer().innerHTML = '';
   },
   hideCollectionTitle: function() {
     ui.collectionTitleWrapper().style.display = 'none';
@@ -132,6 +138,51 @@ var template = {
       template.openMenu();
     }
   },
+  clearSearchResults: function() {
+    ui.searchResultWrapper().innerHTML = '';
+  },
+  addCardToSearchResult: function(card) {
+    template.hideCollection();
+    template.hideCollectionTitle();
+    template.clearCollection();
+    ui.searchResultWrapper().innerHTML = card;
+  },
+  createCard: function(junk) {
+    let img = junk.metadata.image;
+    let coreMeta = app.getCoreMetaByTokenId(junk.tokenId);
+    let communityMeta = app.getCommunityMetaByTokenId(junk.tokenId);
+    let coreMetaTags = '';
+    let communityMetaTags = '';
+    coreMeta.forEach((meta) => {
+      coreMetaTags += `<span class="tag is-info" style="margin: 5px;">${meta}</span>`;
+    });
+    communityMeta.forEach((meta) => {
+      communityMetaTags += `<span class="tag is-warning" style="margin: 5px;">${meta}</span>`;
+    });
+    return `
+      <div class="card" style="max-width: 300px; margin-bottom: 20px;">
+        <div class="card-image">
+          <figure class="image is-48by48">
+            <img src="${img}" style="height: 300px;">
+          </figure>
+        </div>
+
+        <div class="card-content">
+          <div class="media">
+            <div class="media-content">
+              <p class="title is-4"><span class="heading">Token ID: ${junk.tokenId}</span></p>
+              <p class="subtitle is-6"><span class="heading">Rank: ${junk.rarity.rank}</span></p>
+            </div>
+          </div>
+      
+          <div class="content">
+            <span class="heading">meta traits</span>
+            ${coreMetaTags}
+            ${communityMetaTags}
+          </div>
+        </div>
+      </div>`;
+  }
 }
 
 var app = {
@@ -140,6 +191,7 @@ var app = {
     app.loadMetaHub();
   },
   reset: function() {
+    template.clearSearchResults();
     template.clearCollection();
     template.closeMenu();
     template.hideCollectionTitle();
@@ -159,7 +211,7 @@ var app = {
 
         template += `
           <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link heading">
+            <a class="navbar-link heading is-arrowless">
               ${meta.category}
             </a>
             <div class="navbar-dropdown">`;
@@ -214,7 +266,7 @@ var app = {
         <div class="level-item has-text-centered">
           <div onclick="app.getMetaCollection('${meta.id}');">
             <p>
-              <img src="${posterImage}"  style="max-width: 140px; padding-bottom: 10px;">
+              <img src="${posterImage}" style="max-width: 140px; padding-bottom: 10px;">
             </p>
             <p class="heading">${meta.name}</p>
           </div>
@@ -224,6 +276,32 @@ var app = {
     });
 
     ui.collection().innerHTML = template;
+  },
+  getCoreMetaByTokenId: function(tokenId) {
+    let myMeta = [];
+    
+    let coreMeta = metadata.filter((meta) => meta?.meta_type === 0);
+
+    coreMeta.forEach((meta) => {
+      if (this.isIncludedInMeta(junkies[tokenId], meta)) {
+        myMeta.push(meta.name);
+      }
+    });
+
+    return myMeta;
+  },
+  getCommunityMetaByTokenId: function(tokenId) {
+    let myMeta = [];
+    
+    let communityMeta = metadata.filter((meta) => meta?.meta_type !== 0);
+
+    communityMeta.forEach((meta) => {
+      if (this.isIncludedInMeta(junkies[tokenId], meta)) {
+        myMeta.push(meta.name);
+      }
+    });
+
+    return myMeta;
   },
   getColorFilteredJunkies: function() {
     let hairColor = document.getElementById("hairColor").value;
@@ -261,6 +339,7 @@ var app = {
   getMetaCollection: function(metaId) {
     let meta = data.getMetaById(metaId);
 
+    template.clearSearchResults();
     template.clearCollection();
 
     var innerHtml = '';
@@ -297,122 +376,9 @@ var app = {
   },
   getJunkiesBasedOnMeta: function(meta) {
     let metaJunkies = [];
-    let isValid = true;
 
     junkies.forEach(junk => {
-      let whitelisted = meta.whitelist?.includes(junk.tokenId);
-      let blacklisted = meta.blacklist?.includes(junk.tokenId);
-      let special = whitelisted || blacklisted;
-      isValid = !special && (meta.traits || meta.colors || meta.trait_count);
-
-      // Verify Trait Matches
-      if (isValid && meta.traits) {
-        for (let i = 0; i < meta.traits.length; i++) {
-          traitFilter = meta.traits[i];
-          let junkTraits = junk.metadata.attributes;
-
-          if (traitFilter.value === 'none' && junkTraits.find((att) => att.trait_type === traitFilter.trait_type)?.value === undefined) {
-            isValid = true;
-          } else {
-            isValid = traitFilter.value.includes(junkTraits.find((att) => att.trait_type === traitFilter.trait_type)?.value);
-          }
-          
-          if (!isValid) { break; }
-        }
-      }
-
-      // Verify Color Matches
-      if (isValid && meta.colors) {
-        let validHair = meta.colors.hair === undefined;
-        if (!validHair && meta.colors.hair.includes('match-')) {
-          let matchHairWith = meta.colors.hair.replace('match-', '');
-          validHair = junk.colors.hair === junk.colors[matchHairWith] && junk.colors.hair !== 'base';
-        } else if(!validHair) {
-          validHair = meta.colors.hair.includes(junk.colors.hair);
-        }
-
-        let validEyes = meta.colors.eyes === undefined;
-        if (!validEyes && meta.colors.eyes.includes('match-')) {
-          let matchEyesWith = meta.colors.eyes.replace('match-', '');
-          validEyes = junk.colors.eyes === junk.colors[matchEyesWith] && junk.colors.hair !== 'base';
-        } else if(!validEyes) {
-          validEyes = meta.colors.eyes.includes(junk.colors.eyes);
-        }
-
-        let validClothes = meta.colors.clothes === undefined;
-        if (!validClothes && meta.colors.clothes.includes('match-')) {
-          let matchClothessWith = meta.colors.clothes.replace('match-', '');
-          validClothes = junk.colors.clothes === junk.colors[matchClothessWith] && junk.colors.hair !== 'base';
-        } else if(!validClothes) {
-          validClothes = meta.colors.clothes.includes(junk.colors.clothes);
-        }
-
-        let validBackdrop = meta.colors.backdrop === undefined;
-        if (!validBackdrop && meta.colors.backdrop.includes('match-')) {
-          let matchBackdropWith = meta.colors.backdrop.replace('match-', '');
-          validBackdrop = junk.colors.backdrop === junk.colors[matchBackdropWith] && junk.colors.hair !== 'base';
-        } else if(!validBackdrop) {
-          validBackdrop = meta.colors.backdrop.includes(junk.colors.backdrop);
-        }
-
-        let validBackprop = meta.colors.backprop === undefined || junk.colors.backprop === 'base';
-        if (!validBackprop && meta.colors.backprop.includes('match-')) {
-          let matchBackpropWith = meta.colors.backprop.replace('match-', '');
-          validBackprop = junk.colors.backprop === junk.colors[matchBackpropWith];
-        } else if(!validBackprop) {
-          validBackprop = meta.colors.backprop.includes(junk.colors.backprop);
-        }
-
-        let validHairProp = meta.colors.hairprop === undefined || junk.colors.hairprop === 'base';
-        if (!validHairProp && meta.colors.hairprop.includes('match-')) {
-          let matchHairPropWith = meta.colors.hairprop.replace('match-', '');
-          validHairProp = junk.colors.hairprop === junk.colors[matchHairPropWith];
-        } else if(!validHairProp) {
-          validHairProp = meta.colors.hairprop.includes(junk.colors.hairprop);
-        }
-
-        let validProp = meta.colors.prop === undefined  || junk.colors.prop === 'base';
-        if (!validProp && meta.colors.prop.includes('match-')) {
-          let matchPropWith = meta.colors.prop.replace('match-', '');
-          validProp = junk.colors.prop === junk.colors[matchPropWith];
-        } else if(!validProp) {
-          validProp = meta.colors.prop.includes(junk.colors.prop);
-        }
-
-        isValid = validHair && validEyes && validClothes && validBackdrop && validBackprop && validHairProp && validProp;
-      }
-
-      // Verify Trait Count
-      if (isValid && meta.trait_count) {
-        isValid = meta.trait_count === junk.metadata.attributes.length;
-      }
-
-      // Verify Color Count
-      if (isValid && (meta.colors?.max_match || meta.colors?.match_count)) {
-        const arr = [junk.colors.hair, junk.colors.eyes, junk.colors.clothes, junk.colors.backdrop];
-        const colorSummary = {};
-        let maxColorMatch = 0;
-        let matchCount = 0;
-        arr.forEach((x) => {
-          if (x !== 'base') {
-            colorSummary[x] = (colorSummary[x] || 0) + 1;
-          }
-          // Watch max color match
-          if (colorSummary[x] > maxColorMatch) { 
-            maxColorMatch = colorSummary[x];
-          }
-        });
-        // Count doubles
-        Object.values(colorSummary).forEach((value) => {
-          if (value === meta.colors.max_match) {
-            matchCount = matchCount + 1;
-          }
-        });
-
-        isValid = maxColorMatch === meta.colors.max_match && (!meta.colors.match_count || meta.colors.match_count === matchCount);
-      }
-      
-      if (!blacklisted && (whitelisted || isValid)) { metaJunkies.push(junk); }
+      if (this.isIncludedInMeta(junk, meta)) { metaJunkies.push(junk); }
     });
 
     if (meta.sort?.includes('-color')) {
@@ -426,6 +392,139 @@ var app = {
 
     return metaJunkies;
   },
+  isIncludedInMeta: function(junk, meta) {
+    let whitelisted = meta.whitelist?.includes(junk.tokenId);
+    let blacklisted = meta.blacklist?.includes(junk.tokenId);
+    let special = whitelisted || blacklisted;
+    isValid = !special && (meta.traits || meta.colors || meta.trait_count);
+
+    // Verify Trait Matches
+    if (isValid && meta.traits) {
+      isValid = this.isValidTrait(junk, meta.traits);
+    }
+
+    // Verify Color Matches
+    if (isValid && meta.colors) {
+      isValid = this.isValidColorMatches(junk, meta.colors);
+    }
+
+    // Verify Trait Count
+    if (isValid && meta.trait_count) {
+      isValid = meta.trait_count === junk.metadata.attributes.length;
+    }
+
+    // Verify Color Count
+    if (isValid && (meta.colors?.max_match || meta.colors?.match_count)) {
+      isValid = this.isValidColorMatchCount(junk,meta.colors.max_match, meta.colors.match_count);
+    }
+    
+    return !blacklisted && (whitelisted || isValid);
+  },
+  isValidTrait: function(junk, metaTraits) {
+    let isValid = true;
+    for (let i = 0; i < metaTraits.length; i++) {
+      traitFilter = metaTraits[i];
+      let junkTraits = junk.metadata.attributes;
+
+      if (traitFilter.value === 'none' && junkTraits.find((att) => att.trait_type === traitFilter.trait_type)?.value === undefined) {
+        isValid = true;
+      } else {
+        isValid = traitFilter.value.includes(junkTraits.find((att) => att.trait_type === traitFilter.trait_type)?.value);
+      }
+      
+      if (!isValid) { break; }
+    }
+
+    return isValid;
+  },
+  isValidColorMatches: function(junk, metaColors) {
+    let validHair = metaColors.hair === undefined;
+    if (!validHair && metaColors.hair.includes('match-')) {
+      let matchHairWith = metaColors.hair.replace('match-', '');
+      validHair = junk.colors.hair === junk.colors[matchHairWith] && junk.colors.hair !== 'base';
+    } else if(!validHair) {
+      validHair = metaColors.hair.includes(junk.colors.hair);
+    }
+
+    let validEyes = metaColors.eyes === undefined;
+    if (!validEyes && metaColors.eyes.includes('match-')) {
+      let matchEyesWith = metaColors.eyes.replace('match-', '');
+      validEyes = junk.colors.eyes === junk.colors[matchEyesWith] && junk.colors.hair !== 'base';
+    } else if(!validEyes) {
+      validEyes = metaColors.eyes.includes(junk.colors.eyes);
+    }
+
+    let validClothes = metaColors.clothes === undefined;
+    if (!validClothes && metaColors.clothes.includes('match-')) {
+      let matchClothessWith = metaColors.clothes.replace('match-', '');
+      validClothes = junk.colors.clothes === junk.colors[matchClothessWith] && junk.colors.hair !== 'base';
+    } else if(!validClothes) {
+      validClothes = metaColors.clothes.includes(junk.colors.clothes);
+    }
+
+    let validBackdrop = metaColors.backdrop === undefined;
+    if (!validBackdrop && metaColors.backdrop.includes('match-')) {
+      let matchBackdropWith = metaColors.backdrop.replace('match-', '');
+      validBackdrop = junk.colors.backdrop === junk.colors[matchBackdropWith] && junk.colors.hair !== 'base';
+    } else if(!validBackdrop) {
+      validBackdrop = metaColors.backdrop.includes(junk.colors.backdrop);
+    }
+
+    let validBackprop = metaColors.backprop === undefined || junk.colors.backprop === 'base';
+    if (!validBackprop && metaColors.backprop.includes('match-')) {
+      let matchBackpropWith = metaColors.backprop.replace('match-', '');
+      validBackprop = junk.colors.backprop === junk.colors[matchBackpropWith];
+    } else if(!validBackprop) {
+      validBackprop = metaColors.backprop.includes(junk.colors.backprop);
+    }
+
+    let validHairProp = metaColors.hairprop === undefined || junk.colors.hairprop === 'base';
+    if (!validHairProp && metaColors.hairprop.includes('match-')) {
+      let matchHairPropWith = metaColors.hairprop.replace('match-', '');
+      validHairProp = junk.colors.hairprop === junk.colors[matchHairPropWith];
+    } else if(!validHairProp) {
+      validHairProp = metaColors.hairprop.includes(junk.colors.hairprop);
+    }
+
+    let validProp = metaColors.prop === undefined  || junk.colors.prop === 'base';
+    if (!validProp && metaColors.prop.includes('match-')) {
+      let matchPropWith = metaColors.prop.replace('match-', '');
+      validProp = junk.colors.prop === junk.colors[matchPropWith];
+    } else if(!validProp) {
+      validProp = metaColors.prop.includes(junk.colors.prop);
+    }
+
+    return validHair && validEyes && validClothes && validBackdrop && validBackprop && validHairProp && validProp;
+  },
+  isValidColorMatchCount: function(junk, maxMatch, maxCount) {
+    const arr = [junk.colors.hair, junk.colors.eyes, junk.colors.clothes, junk.colors.backdrop];
+    const colorSummary = {};
+    let maxColorMatch = 0;
+    let matchCount = 0;
+    arr.forEach((x) => {
+      if (x !== 'base') {
+        colorSummary[x] = (colorSummary[x] || 0) + 1;
+      }
+      // Watch max color match
+      if (colorSummary[x] > maxColorMatch) { 
+        maxColorMatch = colorSummary[x];
+      }
+    });
+    // Count doubles
+    Object.values(colorSummary).forEach((value) => {
+      if (value === maxMatch) {
+        matchCount = matchCount + 1;
+      }
+    });
+    
+    return maxColorMatch === maxMatch && (!maxCount || maxCount === matchCount);
+  },
+  findJunk: function() {
+    let tokenId = ui.tokenId().value;
+    if (tokenId >= 0 && tokenId <= 9000) {
+      template.addCardToSearchResult(template.createCard(junkies[tokenId]));
+    }
+  }
 }
 
 document.onreadystatechange = function () {
