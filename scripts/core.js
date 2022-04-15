@@ -401,8 +401,8 @@ var app = {
       `<a href="#" style="height: 310px;" onclick="app.findJunk(${junk.tokenId});">
         <img src="${img}" style="max-width: 260px;">
         <div style="height: 40px; text-align: left;">
-          <span class="heading" style="color: #363636;">SJ#${junk.tokenId}<span>
-          <span class="heading" style="color: #363636;font-weight: bold;">RANK ${junk.rarity.rank}<span>
+          <span class="heading" style="color: #363636; font-weight: bold;">#${junk.tokenId}<span>
+          <span class="heading" style="color: #363636; font-weight: normal;">RANK ${junk.rarity.rank}<span>
         </div>
       </a>`;
     });
