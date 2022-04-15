@@ -112,16 +112,26 @@
       </div>
     </div>
   </nav>
-  <div class="container" style="padding-top: 30px; padding-bottom: 30px;">
-    
-    <p class="subtitle heading m-4" style="color: red;">
-      DISCLAIMER - This is a community maintained site. Please do not make financial decisions based on these information.
-    </p>
+  <div class="container" style="padding-top: 20px; padding-bottom: 20px;">
+    <div class="notification is-warning p-2 pl-4 pr-4">
+      <span style="font-size: 12px;">
+        DISCLAIMER - This is a community maintained site. Please do not make financial decisions based on these information.
+      </span>
+    </div>
+
     <div class="m-4">
-      <input id="tokenId" class="input is-normal" type="text" placeholder="TOKEN ID" style="width: 120px; margin-right: 10px;">
-      <a class="button is-primary" style="background-color: #06f;color: #fff;" onclick="app.findJunk();">
-        <strong>Search</strong>
-      </a>
+      <div class="level-item">
+        <div class="field has-addons">
+          <p class="control">
+            <input id="tokenId" class="input" type="text" placeholder="Token ID">
+          </p>
+          <p class="control">
+            <button class="button is-info" onclick="app.findJunk();">
+              Search
+            </button>
+          </p>
+        </div>
+      </div>
     </div>
 
     <div id="searchResultWrapper" style="display: flex; flex-direction: row; justify-content: space-evenly; flex-wrap: wrap;">

@@ -61,6 +61,24 @@ var data = {
   },
   getMetaById: function(metaId) {
     return metadata.find((meta) => meta.id === metaId);
+  },
+  getOSListingInfo: function(tokenId) {
+    http.loadJSON(`https://api.opensea.io/api/v1/asset/0xf4121a2880c225f90dc3b3466226908c9cb2b085/${tokenId}/listings`, function(response) {
+      let listings = JSON.parse(response).listings;
+      if (listings.length > 0 && !listings[0].marked_invalid) {
+        let price = listings[0].base_price / Math.pow(10, listings[0].payment_token_contract.decimals);
+        template.updateOSListPrice(`${price} ${listings[0].payment_token_contract.symbol}`);
+      }
+    });
+  },
+  getLRListingInfo: function(tokenId) {
+    http.loadJSON(`https://api.looksrare.org/api/v1/events?collection=0xF4121a2880c225f90DC3B3466226908c9cB2b085&tokenId=${tokenId}&type=LIST&first=10&cursor=192921`, function(response) {
+      let listings = JSON.parse(response);
+      if (listings.data.length > 0 && listings.data[0].order.status === 'VALID') {
+        let price = listings.data[0].order.price / 1000000000000000000;
+        template.updateLRListPrice(`${price} ETH`);
+      }
+    });
   }
 };
 
@@ -94,6 +112,12 @@ var ui = {
   },
   tokenId: function() {
     return document.getElementById("tokenId");
+  },
+  osListPrice: function() {
+    return document.getElementById("osListPrice");
+  },
+  lrListPrice: function() {
+    return document.getElementById("lrListPrice");
   }
 };
 
@@ -154,10 +178,10 @@ var template = {
     let coreMetaTags = '';
     let communityMetaTags = '';
     coreMeta.forEach((meta) => {
-      coreMetaTags += `<span class="tag is-info" style="margin: 5px;" title="${meta.story}">${meta.name}</span>`;
+      coreMetaTags += `<span onclick="app.getMetaCollection('${meta.id}');" class="tag is-info" style="margin: 5px; cursor: pointer;" title="${meta.story}">${meta.name}</span>`;
     });
     communityMeta.forEach((meta) => {
-      communityMetaTags += `<span class="tag is-warning" style="margin: 5px;" title="${meta.story}">${meta.name}</span>`;
+      communityMetaTags += `<span onclick="app.getMetaCollection('${meta.id}');" class="tag is-warning" style="margin: 5px; cursor: pointer;" title="${meta.story}">${meta.name}</span>`;
     });
     return `
       <div class="card" style="max-width: 300px; margin-bottom: 20px;">
@@ -169,8 +193,8 @@ var template = {
 
         <div class="card-content">
           <div class="media">
-            <div class="media-content">
-              <p class="title is-4"><span class="heading">Token ID: ${junk.tokenId}</span></p>
+            <div class="media-content" style="overflow-y: hidden;">
+              <p class="title is-4">#${junk.tokenId}</p>
               <p class="subtitle is-6"><span class="heading">Rank: ${junk.rarity.rank}</span></p>
             </div>
           </div>
@@ -181,7 +205,24 @@ var template = {
             ${communityMetaTags}
           </div>
         </div>
+
+        <footer class="card-footer">
+          <a href="https://looksrare.org/collections/0xF4121a2880c225f90DC3B3466226908c9cB2b085/${junk.tokenId}" target="_blank" class="card-footer-item">
+            <img src="images/looksrare-logo.webp" style="max-height: 25px;">
+            <span id="lrListPrice" class="tag ml-2">--</span>
+          </a>
+          <a href="https://opensea.io/assets/0xf4121a2880c225f90dc3b3466226908c9cb2b085/${junk.tokenId}" target="_blank" class="card-footer-item">
+            <img src="images/opensea-logo.webp" style="max-height: 25px;">
+            <span id="osListPrice" class="tag ml-2">--</span>
+          </a>
+        </footer>
       </div>`;
+  },
+  updateOSListPrice: function(price) {
+    ui.osListPrice().innerHTML = price;
+  },
+  updateLRListPrice: function(price) {
+    ui.lrListPrice().innerHTML = price;
   }
 }
 
@@ -357,7 +398,7 @@ var app = {
       let img = junk.metadata.image;
 
       innerHtml = innerHtml + 
-      `<a href="https://opensea.io/assets/0xf4121a2880c225f90dc3b3466226908c9cb2b085/${junk.tokenId}" target="_blank" style="height: 310px;">
+      `<a href="#" style="height: 310px;" onclick="app.findJunk(${junk.tokenId});">
         <img src="${img}" style="max-width: 260px;">
         <div style="height: 40px; text-align: left;">
           <span class="heading" style="color: #363636;">SJ#${junk.tokenId}<span>
@@ -519,10 +560,12 @@ var app = {
     
     return maxColorMatch === maxMatch && (!maxCount || maxCount === matchCount);
   },
-  findJunk: function() {
-    let tokenId = ui.tokenId().value;
+  findJunk: function(id) {
+    let tokenId = id ? id : ui.tokenId().value;
     if (tokenId >= 0 && tokenId <= 9000) {
       template.addCardToSearchResult(template.createCard(junkies[tokenId]));
+      data.getOSListingInfo(tokenId);
+      data.getLRListingInfo(tokenId);
     }
   }
 }
