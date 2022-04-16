@@ -134,9 +134,17 @@
       </div>
     </div>
 
-    <div id="searchResultWrapper" style="display: flex; flex-direction: row; justify-content: space-evenly; flex-wrap: wrap;">
+    <div id="searchResultModal" class="modal">
+      <div class="modal-background" onclick="template.closeSearchResult()"></div>
+      <div class="modal-content" style="display: flex; justify-content: center;" onclick="template.closeSearchResult()">
+        <div id="searchResultWrapper" style="width: 320px;" onclick="event.stopPropagation();">
 
+        </div>
+      </div>
+      <button class="modal-close is-large" aria-label="close" onclick="template.closeSearchResult()"></button>
     </div>
+
+    
 
     <section id="collectionInfo" class="hero is-small is-dark" style="display: none;">
       <div class="hero-body">

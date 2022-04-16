@@ -110,6 +110,9 @@ var ui = {
   searchResultWrapper: function() {
     return document.getElementById("searchResultWrapper");
   },
+  searchResultModal: function() {
+    return document.getElementById("searchResultModal");
+  },
   tokenId: function() {
     return document.getElementById("tokenId");
   },
@@ -162,14 +165,13 @@ var template = {
       template.openMenu();
     }
   },
-  clearSearchResults: function() {
+  closeSearchResult: function() {
     ui.searchResultWrapper().innerHTML = '';
+    ui.searchResultModal().classList.remove('is-active');
   },
-  addCardToSearchResult: function(card) {
-    template.hideCollection();
-    template.hideCollectionTitle();
-    template.clearCollection();
+  showSearchResult: function(card) {
     ui.searchResultWrapper().innerHTML = card;
+    ui.searchResultModal().classList.add('is-active');
   },
   createCard: function(junk) {
     let img = junk.metadata.image;
@@ -184,10 +186,10 @@ var template = {
       communityMetaTags += `<span onclick="app.getMetaCollection('${meta.id}');" class="tag is-warning" style="margin: 5px; cursor: pointer;" title="${meta.story}">${meta.name}</span>`;
     });
     return `
-      <div class="card" style="max-width: 300px; margin-bottom: 20px;">
+      <div class="card" style="max-width: 320px; margin-bottom: 20px;">
         <div class="card-image">
           <figure class="image is-48by48">
-            <img src="${img}" style="height: 300px;">
+            <img src="${img}" style="height: 320px;">
           </figure>
         </div>
 
@@ -232,7 +234,7 @@ var app = {
     app.loadMetaHub();
   },
   reset: function() {
-    template.clearSearchResults();
+    template.closeSearchResult();
     template.clearCollection();
     template.closeMenu();
     template.hideCollectionTitle();
@@ -380,7 +382,7 @@ var app = {
   getMetaCollection: function(metaId) {
     let meta = data.getMetaById(metaId);
 
-    template.clearSearchResults();
+    template.closeSearchResult();
     template.clearCollection();
 
     var innerHtml = '';
@@ -398,7 +400,7 @@ var app = {
       let img = junk.metadata.image;
 
       innerHtml = innerHtml + 
-      `<a href="#" style="height: 310px;" onclick="app.findJunk(${junk.tokenId});">
+      `<a id="junkie${junk.tokenId}" href="#junkie${junk.tokenId}" style="height: 310px;" onclick="app.findJunk(${junk.tokenId});">
         <img src="${img}" style="max-width: 260px;">
         <div style="height: 40px; text-align: left;">
           <span class="heading" style="color: #363636; font-weight: bold;">#${junk.tokenId}<span>
@@ -563,7 +565,7 @@ var app = {
   findJunk: function(id) {
     let tokenId = id ? id : ui.tokenId().value;
     if (tokenId >= 0 && tokenId <= 9000) {
-      template.addCardToSearchResult(template.createCard(junkies[tokenId]));
+      template.showSearchResult(template.createCard(junkies[tokenId]));
       data.getOSListingInfo(tokenId);
       data.getLRListingInfo(tokenId);
     }
