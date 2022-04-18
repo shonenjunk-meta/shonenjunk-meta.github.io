@@ -48,7 +48,8 @@ var data = {
         backdrop: traitColors.find((c) => c.hash === av.backdrop && c.trait_type_name === 'backdrop')?.color,
         backprop: traitColors.find((c) => c.hash === av.backprop && c.trait_type_name === 'backprop')?.color,
         prop: traitColors.find((c) => c.hash === av.prop && c.trait_type_name === 'prop')?.color,
-        hairprop: traitColors.find((c) => c.hash === av.hairprop && c.trait_type_name === 'hairprop')?.color
+        hairprop: traitColors.find((c) => c.hash === av.hairprop && c.trait_type_name === 'hairprop')?.color,
+        brows: traitColors.find((c) => c.hash === av.brows && c.trait_type_name === 'brows')?.color
       };
 
       // Mid Shaggy Fix
@@ -169,11 +170,11 @@ var template = {
     ui.searchResultWrapper().innerHTML = '';
     ui.searchResultModal().classList.remove('is-active');
   },
-  showSearchResult: function(card) {
-    ui.searchResultWrapper().innerHTML = card;
+  showSearchResult: function(metaCard, traitCard) {
+    ui.searchResultWrapper().innerHTML = metaCard + traitCard;
     ui.searchResultModal().classList.add('is-active');
   },
-  createCard: function(junk) {
+  createMetaCard: function(junk) {
     let img = junk.metadata.image;
     let coreMeta = app.getCoreMetaByTokenId(junk.tokenId);
     let communityMeta = app.getCommunityMetaByTokenId(junk.tokenId);
@@ -186,7 +187,7 @@ var template = {
       communityMetaTags += `<span onclick="app.getMetaCollection('${meta.id}');" class="tag is-warning" style="margin: 5px; cursor: pointer;" title="${meta.story}">${meta.name}</span>`;
     });
     return `
-      <div class="card" style="max-width: 320px; margin-bottom: 20px;">
+      <div class="card" style="max-width: 320px;">
         <div class="card-image">
           <figure class="image is-48by48">
             <img src="${img}" style="height: 320px;">
@@ -197,7 +198,10 @@ var template = {
           <div class="media">
             <div class="media-content" style="overflow-y: hidden;">
               <p class="title is-4">#${junk.tokenId}</p>
-              <p class="subtitle is-6"><span class="heading">Rank: ${junk.rarity.rank}</span></p>
+              <p class="subtitle is-6">
+                <span class="heading">Rank: ${junk.rarity.rank}</span>
+                <span class="heading">Rating: ${(Math.round(junk.rarity.score * 100) / 100).toFixed(2)}</span>
+              </p>
             </div>
           </div>
       
@@ -219,6 +223,58 @@ var template = {
           </a>
         </footer>
       </div>`;
+  },
+  createTraitCard: function(junk) {
+    var attributeMap = [
+      {"key" : "Eyes", "value": "eyes"},
+      {"key" : "Hair", "value": "hair"},
+      {"key" : "Clothes", "value": "clothes"},
+      {"key" : "Background", "value": "backdrop"},
+      {"key" : "Swords & Wings", "value": "backprop"},
+      {"key" : "Props", "value": "prop"},
+      {"key" : "Hair accessories", "value": "hairprop"},
+      {"key" : "Brows", "value": "brows"},
+    ];
+    let attributes = '';
+    junk.metadata.attributes.forEach((att) => {
+      
+      let attributeColor = attributeMap.find((a) => a.key === att.trait_type);
+
+      attributeColor = attributeColor ? junk.colors[attributeColor.value] : 'transparent';
+
+      attributes += `
+        <tr>
+          <td style="max-width: 80px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">
+            ${att.trait_type}
+          </td>
+          <td style="max-width: 110px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">
+            ${att.value}
+          </td>
+          <td>
+            <div style="border: 1px dotted black; height: 15px; width: 15px; background-color: ${attributeColor};" title="${attributeColor}"></div>
+          </td>
+          <td>
+            +${(Math.round(att.rarity_score * 100) / 100).toFixed(2)}
+          </td>
+        </tr>`;
+    });
+    return `
+    <div class="card p-3" style="width: auto;">
+      <table class="table is-striped" style="font-size: 12px;">
+        <thead>
+          <tr>
+            <th>Attribute</th>
+            <th>Value</th>
+            <th>Color</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+          ${attributes}
+      </table>
+    <div>
+    `;
   },
   updateOSListPrice: function(price) {
     ui.osListPrice().innerHTML = price;
@@ -565,7 +621,7 @@ var app = {
   findJunk: function(id) {
     let tokenId = id ? id : ui.tokenId().value;
     if (tokenId >= 0 && tokenId <= 9000) {
-      template.showSearchResult(template.createCard(junkies[tokenId]));
+      template.showSearchResult(template.createMetaCard(junkies[tokenId]), template.createTraitCard(junkies[tokenId]));
       data.getOSListingInfo(tokenId);
       data.getLRListingInfo(tokenId);
     }
