@@ -1257,7 +1257,7 @@ var traitColors = [
    "hash": "c689d33ed7273ee2e989230f004b9561783b4593a895ee698f1dc39880fc662f",
    "name": "Androgynous Jacket",
    "trait_type_name": "clothes",
-   "color": "blue"
+   "color": "base"
  },
  {
    "hash": "b8d049a56155733479abd8d47a866a20a15aa16ec0146c46e3b1fc3acbf16deb",
